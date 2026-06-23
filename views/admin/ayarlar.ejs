@@ -53,3 +53,18 @@
       <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Tüm Ayarları Kaydet</button></div>
     </form>
   </div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:8px">GitHub Senkronizasyonu</h3>
+    <p style="font-size:13px;color:var(--muted);margin:4px 0 0">
+      Admin panelinde yaptığınız tüm değişiklikler otomatik olarak <code>data/content.json</code> dosyasına aktarılır.
+      Değişikliklerin GitHub'da kalıcı olması için aşağıdaki adımları uygulayın:
+    </p>
+    <ol style="font-size:13px;color:var(--muted);margin:12px 0 0;padding-left:20px">
+      <li><code>git add data/content.json</code></li>
+      <li><code>git commit -m "admin değişiklikleri"</code></li>
+      <li><code>git push</code></li>
+    </ol>
+    <% if (typeof lastSync !== 'undefined' && lastSync) { %>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">Son senkronizasyon: <strong><%= lastSync %></strong></p>
+    <% } %>
+  </div>

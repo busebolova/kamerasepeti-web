@@ -154,6 +154,59 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 .page-hero p { color: #d4dfec; font-size: 18px; max-width: 680px; margin-bottom: 0; }
 .breadcrumbs { font-size: 13px; color: #b7c8de; margin-bottom: 16px; }
 
+.about-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: #021b3b;
+}
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2, 18, 41, .98) 0%, rgba(2, 18, 41, .86) 34%, rgba(2, 18, 41, .25) 66%),
+    url("/assets/about-hero.webp") center/cover no-repeat;
+}
+.about-hero .container { position: relative; z-index: 2; }
+.about-hero h1 { color: #fff; max-width: 560px; font-size: clamp(42px, 5vw, 68px); }
+.about-hero p { max-width: 610px; color: #d8e3f2; font-size: 18px; }
+.about-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+.btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,.45); box-shadow: none; }
+.about-intro { display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: center; }
+.about-photo { min-height: 340px; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-copy-list { display: grid; gap: 18px; margin-top: 24px; }
+.about-copy-item { display: grid; grid-template-columns: 28px 1fr; gap: 14px; color: #35445a; font-weight: 650; }
+.about-copy-item::before {
+  content: "✓"; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%;
+  color: #fff; background: var(--orange); font-size: 13px; font-weight: 900;
+}
+.about-values { border: 1px solid var(--line); border-radius: 18px; padding: 34px 24px; background: #fff; }
+.about-value-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.about-value { text-align: center; padding: 24px 18px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+.about-value .icon-box { margin: 0 auto 14px; color: var(--orange); background: #fff3ed; }
+.about-value p { color: var(--muted); font-size: 14px; margin: 0; }
+.about-work { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: center; }
+.about-service-band { background: #021b3b; color: #fff; overflow: hidden; }
+.about-service-grid { display: grid; grid-template-columns: 1.35fr .65fr; align-items: stretch; }
+.about-service-icons { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 34px 0; }
+.about-service-icon { text-align: center; color: #d9e5f2; font-size: 13px; font-weight: 800; }
+.about-service-icon span { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 10px; border: 1px solid rgba(255,255,255,.25); border-radius: 14px; color: #fff; font-size: 24px; }
+.about-service-image img { width: 100%; height: 100%; min-height: 170px; object-fit: cover; }
+.about-bottom-cta {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(2,18,41,.35), rgba(2,18,41,.98) 42%), url("/assets/about-consultation.webp") left center/cover no-repeat;
+  padding: 58px 0;
+}
+.about-bottom-cta .container { display: grid; grid-template-columns: 1fr 1fr; }
+.about-bottom-cta h2 { color: #fff; }
+.about-mini { display: flex; flex-wrap: wrap; gap: 18px; color: #f0f5fb; font-size: 13px; font-weight: 800; margin-top: 18px; }
+.about-mini span::before { content: "✓"; color: var(--orange); margin-right: 7px; }
+
 .packages-top { text-align: center; max-width: 760px; margin: 0 auto 44px; }
 .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
 .package-card { position: relative; }
@@ -255,6 +308,9 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .floating-whatsapp { bottom: 94px; }
   .hero { min-height: auto; }
   .hero-grid, .split, .contact-layout { grid-template-columns: 1fr; }
+  .about-intro, .about-work, .about-service-grid, .about-bottom-cta .container { grid-template-columns: 1fr; }
+  .about-value-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-service-icons { grid-template-columns: repeat(3, 1fr); }
   .hero { background-position: 62% top; background-size: auto 480px; background-repeat: no-repeat; padding-top: 430px; }
   .hero-grid { display: block; }
   .hero-visual { display: none; }
@@ -273,6 +329,10 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .nav { min-height: 72px; }
   h1 { font-size: 43px; }
   .hero { background-size: auto 390px; padding-top: 350px; }
+  .about-hero { min-height: 620px; align-items: end; padding: 250px 0 52px; }
+  .about-hero::before { background: linear-gradient(0deg, rgba(2,18,41,.96) 0%, rgba(2,18,41,.72) 48%, rgba(2,18,41,.12) 100%), url("/assets/about-hero.webp") 68% top/auto 360px no-repeat; }
+  .about-value-grid, .about-service-icons { grid-template-columns: 1fr 1fr; }
+  .about-bottom-cta { background: linear-gradient(0deg, rgba(2,18,41,.98), rgba(2,18,41,.88)), url("/assets/about-consultation.webp") center/cover no-repeat; }
   .benefits { display: grid; grid-template-columns: 1fr; gap: 14px; }
   .trust-grid, .service-grid, .steps-grid, .package-grid, .blog-grid, .contact-cards, .footer-grid { grid-template-columns: 1fr; }
   .trust-item { border-right: 0; border-bottom: 1px solid var(--line); }

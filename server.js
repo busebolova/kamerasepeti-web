@@ -9,6 +9,7 @@ const { initDb, getDb } = require('./lib/db');
 const data = require('./lib/data');
 const { hashPassword, checkPassword, requireAuth } = require('./lib/auth');
 const { seedIfEmpty } = require('./lib/seed');
+const { exportToJson } = require('./lib/sync');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -193,13 +194,22 @@ app.get('/admin', requireAuth, (req, res) => {
 // ─── Admin: Settings ───
 app.get('/admin/ayarlar', requireAuth, (req, res) => {
   const allSettings = data.getAllSettings();
-  res.render('admin/ayarlar', { layout: 'admin/layout', settings: allSettings });
+  let lastSync = null;
+  const syncFile = path.join(__dirname, 'data', 'content.json');
+  if (fs.existsSync(syncFile)) {
+    try {
+      const stat = fs.statSync(syncFile);
+      lastSync = stat.mtime.toLocaleString('tr-TR');
+    } catch (e) {}
+  }
+  res.render('admin/ayarlar', { layout: 'admin/layout', settings: allSettings, lastSync });
 });
 
 app.post('/admin/ayarlar', requireAuth, (req, res) => {
   for (const [key, value] of Object.entries(req.body)) {
     data.setSetting(key, value);
   }
+  exportToJson();
   res.redirect('/admin/ayarlar');
 });
 
@@ -228,11 +238,13 @@ app.post('/admin/blog/kaydet', requireAuth, (req, res) => {
     data.createBlogPost(item);
   }
   res.redirect('/admin/blog');
+  exportToJson();
 });
 
 app.post('/admin/blog/sil/:id', requireAuth, (req, res) => {
   data.deleteBlogPost(req.params.id);
   res.redirect('/admin/blog');
+  exportToJson();
 });
 
 // ─── Admin: Testimonials ───
@@ -260,11 +272,13 @@ app.post('/admin/referanslar/kaydet', requireAuth, (req, res) => {
     data.createTestimonial(item);
   }
   res.redirect('/admin/referanslar');
+  exportToJson();
 });
 
 app.post('/admin/referanslar/sil/:id', requireAuth, (req, res) => {
   data.deleteTestimonial(req.params.id);
   res.redirect('/admin/referanslar');
+  exportToJson();
 });
 
 // ─── Admin: Projects ───
@@ -292,11 +306,13 @@ app.post('/admin/projeler/kaydet', requireAuth, (req, res) => {
     data.createProject(item);
   }
   res.redirect('/admin/projeler');
+  exportToJson();
 });
 
 app.post('/admin/projeler/sil/:id', requireAuth, (req, res) => {
   data.deleteProject(req.params.id);
   res.redirect('/admin/projeler');
+  exportToJson();
 });
 
 // ─── Admin: Navigation ───
@@ -315,11 +331,13 @@ app.post('/admin/menu/kaydet', requireAuth, (req, res) => {
     data.createNavItem(item);
   }
   res.redirect('/admin/menu');
+  exportToJson();
 });
 
 app.post('/admin/menu/sil/:id', requireAuth, (req, res) => {
   data.deleteNavItem(req.params.id);
   res.redirect('/admin/menu');
+  exportToJson();
 });
 
 // ─── Admin: Footer ───
@@ -340,11 +358,13 @@ app.post('/admin/footer/section/kaydet', requireAuth, (req, res) => {
     data.createFooterSection({ title, sort_order: parseInt(sort_order) || 0 });
   }
   res.redirect('/admin/footer');
+  exportToJson();
 });
 
 app.post('/admin/footer/section/sil/:id', requireAuth, (req, res) => {
   data.deleteFooterSection(req.params.id);
   res.redirect('/admin/footer');
+  exportToJson();
 });
 
 app.post('/admin/footer/link/kaydet', requireAuth, (req, res) => {
@@ -355,11 +375,13 @@ app.post('/admin/footer/link/kaydet', requireAuth, (req, res) => {
     data.createFooterLink({ section_id, label, url, sort_order: parseInt(sort_order) || 0 });
   }
   res.redirect('/admin/footer');
+  exportToJson();
 });
 
 app.post('/admin/footer/link/sil/:id', requireAuth, (req, res) => {
   data.deleteFooterLink(req.params.id);
   res.redirect('/admin/footer');
+  exportToJson();
 });
 
 // ─── Admin: İletişim ───
@@ -377,11 +399,13 @@ app.post('/admin/iletisim/kaydet', requireAuth, (req, res) => {
     data.createContactInfo(item);
   }
   res.redirect('/admin/iletisim');
+  exportToJson();
 });
 
 app.post('/admin/iletisim/sil/:id', requireAuth, (req, res) => {
   data.deleteContactInfo(req.params.id);
   res.redirect('/admin/iletisim');
+  exportToJson();
 });
 
 // ─── Admin: Packages ───
@@ -409,11 +433,13 @@ app.post('/admin/paketler/kaydet', requireAuth, (req, res) => {
     data.createPackage(item);
   }
   res.redirect('/admin/paketler');
+  exportToJson();
 });
 
 app.post('/admin/paketler/sil/:id', requireAuth, (req, res) => {
   data.deletePackage(req.params.id);
   res.redirect('/admin/paketler');
+  exportToJson();
 });
 
 // ─── Admin: Media ───
@@ -438,6 +464,7 @@ app.post('/admin/medya/yukle', requireAuth, upload.single('file'), (req, res) =>
     alt_text: req.body.alt_text || ''
   });
   res.redirect('/admin/medya');
+  exportToJson();
 });
 
 app.post('/admin/medya/sil/:id', requireAuth, (req, res) => {
@@ -447,6 +474,7 @@ app.post('/admin/medya/sil/:id', requireAuth, (req, res) => {
     if (fs.existsSync(fp)) fs.unlinkSync(fp);
   }
   res.redirect('/admin/medya');
+  exportToJson();
 });
 
 // ─── 404 ───
