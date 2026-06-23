@@ -395,8 +395,8 @@ app.get('/admin/paketler/duzenle/:id', requireAuth, (req, res) => {
 });
 
 app.post('/admin/paketler/kaydet', requireAuth, (req, res) => {
-  const { id, slug, name, subtitle, price, price_label, features, is_popular, is_published, sort_order } = req.body;
-  const item = { slug, name, subtitle, price: parseInt(price) || 0, price_label, features, is_popular: is_popular ? 1 : 0, is_published: is_published ? 1 : 0, sort_order: parseInt(sort_order) || 0 };
+  const { id, slug, name, subtitle, price, price_label, features, pricing_json, is_popular, is_published, sort_order } = req.body;
+  const item = { slug, name, subtitle, price: parseInt(price) || 0, price_label, features, pricing_json: pricing_json || '', is_popular: is_popular ? 1 : 0, is_published: is_published ? 1 : 0, sort_order: parseInt(sort_order) || 0 };
   if (id) {
     data.updatePackage(id, item);
   } else {

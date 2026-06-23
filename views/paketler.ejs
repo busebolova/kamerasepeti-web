@@ -20,11 +20,17 @@
                 <p><%= p.subtitle %></p>
               </div>
               <div class="package-body">
-                <div class="price"><%= (p.price || 'Sorunuz').toLocaleString('tr-TR') %> <small><%= p.price_label || 'TL + KDV' %></small></div>
+                <div class="price" data-base-price="<%= p.price %>" data-pricing='<%= p.pricing ? JSON.stringify(p.pricing) : '' %>'><%= (p.price || 'Sorunuz').toLocaleString('tr-TR') %> <small><%= p.price_label || 'TL + KDV' %></small></div>
                 <select class="package-select" aria-label="Kamera sayısı">
-                  <option>Kamera Sayısı Seçin</option>
-                  <% for (var i = 2; i <= 16; i+=2) { %>
-                    <option value="<%= i %>"><%= i %> Kamera</option>
+                  <option value="">Kamera Sayısı Seçin</option>
+                  <% if (p.pricing && p.pricing.length) { %>
+                    <% p.pricing.forEach(function(pr) { %>
+                      <option value="<%= pr.count %>"><%= pr.count %> Kamera — <%= pr.price.toLocaleString('tr-TR') %> TL</option>
+                    <% }); %>
+                  <% } else { %>
+                    <% for (var i = 2; i <= 16; i+=2) { %>
+                      <option value="<%= i %>"><%= i %> Kamera</option>
+                    <% } %>
                   <% } %>
                 </select>
                 <ul class="package-features">
@@ -50,3 +56,22 @@
         <% } %>
       </div>
     </section>
+
+<script>
+document.querySelectorAll('.package-select').forEach(function(sel) {
+  sel.addEventListener('change', function() {
+    var card = this.closest('.package-card');
+    var priceEl = card.querySelector('.price');
+    if (!priceEl) return;
+    var pricing = priceEl.getAttribute('data-pricing');
+    if (!pricing) return;
+    try { pricing = JSON.parse(pricing); } catch(e) { return; }
+    var count = parseInt(this.value);
+    if (!count) return;
+    var found = pricing.find(function(p) { return p.count === count; });
+    if (found) {
+      priceEl.innerHTML = found.price.toLocaleString('tr-TR') + ' <small>' + priceEl.querySelector('small').textContent + '</small>';
+    }
+  });
+});
+</script>
