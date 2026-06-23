@@ -244,32 +244,35 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 .floating-whatsapp:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
 .floating-whatsapp svg { position: relative; left: 1px; }
 
+/* Mobile bottom navigation — hidden on desktop, fixed at bottom on mobile */
+.mobile-bottom-nav { display: none; }
+
 @media (max-width: 980px) {
   .nav-phone { display: none; }
   .menu-toggle { display: none; }
+  .nav-links { display: none; }
   .site-header { position: relative; border-bottom: none; }
   .nav { min-height: 60px; gap: 16px; }
-  .nav-links {
-    position: fixed; z-index: 100; left: 0; right: 0; bottom: 0; top: auto;
+  .mobile-bottom-nav {
     display: flex; align-items: center; justify-content: space-around;
+    position: fixed; z-index: 100; left: 0; right: 0; bottom: 0; top: auto;
     padding: 6px 0 calc(6px + env(safe-area-inset-bottom, 0px));
     background: rgba(2,27,59,.96); border-top: 1px solid rgba(255,255,255,.13);
-    backdrop-filter: blur(16px); box-shadow: 0 -2px 12px rgba(2,27,59,.2); gap: 2px;
+    backdrop-filter: blur(16px); box-shadow: 0 -2px 12px rgba(2,27,59,.2);
   }
-  .nav-links a {
+  .mobile-bottom-nav a {
     flex: 1; min-width: 0; padding: 6px 2px; border-radius: 8px;
     color: #b0bed0; font-size: 10px; font-weight: 600; line-height: 1.2;
     text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: .2s;
   }
-  .nav-links a::before { display: block; color: #fff; font-size: 20px; line-height: 1; }
-  .nav-links a[href="/"]::before { content: "⌂"; }
-  .nav-links a[href="/paketler"]::before { content: "▦"; }
-  .nav-links a[href="/hakkimizda"]::before { content: "ℹ"; }
-  .nav-links a[href="/referanslar"]::before { content: "♢"; }
-  .nav-links a[href="/blog"]::before { content: "▤"; }
-  .nav-links a[href="/iletisim"]::before { content: "☎"; }
-  .nav-links a::after { display: none; }
-  .nav-links a.active { color: #fff; background: var(--orange); border-radius: 8px; }
+  .mobile-bottom-nav a.active { color: #fff; background: var(--orange); border-radius: 8px; }
+  .mobile-bottom-nav a::before { display: block; font-size: 20px; line-height: 1; }
+  .mobile-bottom-nav a[href="/"]::before { content: "⌂"; }
+  .mobile-bottom-nav a[href="/paketler"]::before { content: "▦"; }
+  .mobile-bottom-nav a[href="/hakkimizda"]::before { content: "ℹ"; }
+  .mobile-bottom-nav a[href="/referanslar"]::before { content: "♢"; }
+  .mobile-bottom-nav a[href="/blog"]::before { content: "▤"; }
+  .mobile-bottom-nav a[href="/iletisim"]::before { content: "☎"; }
   body { padding-bottom: 60px; }
   .floating-whatsapp { bottom: 80px; }
   .hero { min-height: auto; }

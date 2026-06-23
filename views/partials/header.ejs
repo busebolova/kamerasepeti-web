@@ -14,3 +14,8 @@
       <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
     </div>
   </header>
+  <nav class="mobile-bottom-nav">
+    <% navItems.forEach(function(item) { %>
+      <a href="<%= item.url %>" <%= currentPath === item.url || (item.url !== '/' && currentPath.startsWith(item.url)) ? 'class="active"' : '' %>><span class="mb-label"><%= item.label %></span></a>
+    <% }) %>
+  </nav>
