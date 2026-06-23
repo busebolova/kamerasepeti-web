@@ -1,0 +1,26 @@
+  <div class="admin-topbar">
+    <h1>Blog Yazıları</h1>
+    <a href="/admin/blog/yeni" class="btn btn-orange btn-sm" style="min-height:auto">+ Yeni Yazı</a>
+  </div>
+  <div class="admin-card">
+    <table class="admin-table">
+      <thead><tr><th>Başlık</th><th>Kategori</th><th>Durum</th><th>Tarih</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% posts.forEach(function(post) { %>
+          <tr>
+            <td><strong><%= post.title %></strong></td>
+            <td><%= post.category || '-' %></td>
+            <td><span class="badge <%= post.is_published ? 'badge-green' : 'badge-red' %>"><%= post.is_published ? 'Yayında' : 'Taslak' %></span></td>
+            <td style="color:var(--muted);font-size:13px"><%= post.published_at ? new Date(post.published_at).toLocaleDateString('tr-TR') : '-' %></td>
+            <td>
+              <a href="/admin/blog/duzenle/<%= post.id %>" class="btn btn-sm" style="min-height:auto;background:var(--blue)">Düzenle</a>
+              <form method="post" action="/admin/blog/sil/<%= post.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!posts.length) { %><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">Henüz blog yazısı eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>

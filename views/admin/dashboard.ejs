@@ -1,0 +1,16 @@
+  <div class="admin-topbar"><h1>Dashboard</h1><a href="/" target="_blank" class="btn btn-sm" style="background:var(--navy);min-height:auto">Siteyi Görüntüle →</a></div>
+  <div class="admin-grid">
+    <div class="stat-card"><b><%= postCount %></b><span>Blog Yazısı</span></div>
+    <div class="stat-card"><b><%= testimonialCount %></b><span>Referans</span></div>
+    <div class="stat-card"><b><%= projectCount %></b><span>Proje</span></div>
+    <div class="stat-card"><b><%= mediaCount %></b><span>Medya Dosyası</span></div>
+  </div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Hızlı İşlemler</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <a href="/admin/blog/yeni" class="btn btn-sm" style="min-height:auto">Yeni Blog Yazısı</a>
+      <a href="/admin/referanslar/yeni" class="btn btn-sm" style="min-height:auto;background:var(--green)">Yeni Referans</a>
+      <a href="/admin/projeler/yeni" class="btn btn-sm" style="min-height:auto;background:var(--blue)">Yeni Proje</a>
+      <a href="/admin/medya" class="btn btn-sm" style="min-height:auto">Medya Yükle</a>
+    </div>
+  </div>

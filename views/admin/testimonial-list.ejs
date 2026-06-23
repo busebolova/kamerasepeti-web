@@ -1,0 +1,26 @@
+  <div class="admin-topbar">
+    <h1>Referanslar</h1>
+    <a href="/admin/referanslar/yeni" class="btn btn-orange btn-sm" style="min-height:auto">+ Yeni Referans</a>
+  </div>
+  <div class="admin-card">
+    <table class="admin-table">
+      <thead><tr><th>İsim</th><th>Şirket</th><th>Puan</th><th>Durum</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% testimonials.forEach(function(t) { %>
+          <tr>
+            <td><strong><%= t.name %></strong></td>
+            <td><%= t.company || '-' %></td>
+            <td><%= '★'.repeat(t.rating) %></td>
+            <td><span class="badge <%= t.is_published ? 'badge-green' : 'badge-red' %>"><%= t.is_published ? 'Yayında' : 'Taslak' %></span></td>
+            <td>
+              <a href="/admin/referanslar/duzenle/<%= t.id %>" class="btn btn-sm" style="min-height:auto;background:var(--blue)">Düzenle</a>
+              <form method="post" action="/admin/referanslar/sil/<%= t.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!testimonials.length) { %><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">Henüz referans eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>

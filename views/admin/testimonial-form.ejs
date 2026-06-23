@@ -1,0 +1,48 @@
+  <div class="admin-topbar">
+    <h1><%= t ? 'Referansı Düzenle' : 'Yeni Referans' %></h1>
+    <a href="/admin/referanslar" class="btn btn-sm" style="min-height:auto;background:var(--muted)">← Geri</a>
+  </div>
+  <div class="admin-card">
+    <form class="admin-form" method="post" action="/admin/referanslar/kaydet">
+      <% if (t) { %><input type="hidden" name="id" value="<%= t.id %>"><% } %>
+      <div class="row">
+        <div>
+          <label>Ad Soyad</label>
+          <input name="name" value="<%= t ? t.name : '' %>" required>
+        </div>
+        <div>
+          <label>Şirket / Pozisyon</label>
+          <input name="company" value="<%= t ? t.company : '' %>" placeholder="Şirket Adı">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Başlık (ünvan)</label>
+          <input name="title" value="<%= t ? t.title : '' %>" placeholder="İşletme Sahibi / Müdür">
+        </div>
+        <div>
+          <label>Puan (1-5)</label>
+          <input type="number" name="rating" min="1" max="5" value="<%= t ? t.rating : 5 %>">
+        </div>
+      </div>
+      <label>Yorum</label>
+      <textarea name="content" rows="5" required><%= t ? t.content : '' %></textarea>
+      <div class="row">
+        <div>
+          <label>Görsel URL</label>
+          <input name="image" value="<%= t ? t.image : '' %>" placeholder="/uploads/foto.jpg">
+        </div>
+        <div>
+          <label>Sıralama</label>
+          <input type="number" name="sort_order" value="<%= t ? t.sort_order : 0 %>">
+        </div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:14px">
+        <input type="checkbox" name="is_published" value="1" <%= t && !t.is_published ? '' : 'checked' %> style="width:auto">
+        Yayında
+      </label>
+      <div class="admin-actions">
+        <button type="submit" class="btn btn-orange" style="min-height:auto">Kaydet</button>
+      </div>
+    </form>
+  </div>

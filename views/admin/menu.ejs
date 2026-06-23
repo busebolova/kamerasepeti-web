@@ -1,0 +1,51 @@
+  <div class="admin-topbar"><h1>Menü Yönetimi</h1></div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Mevcut Menü Öğeleri</h3>
+    <table class="admin-table">
+      <thead><tr><th>Etiket</th><th>URL</th><th>Sıra</th><th>Durum</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% allNav.forEach(function(item) { %>
+          <tr>
+            <td><strong><%= item.label %></strong></td>
+            <td><%= item.url %></td>
+            <td><%= item.sort_order %></td>
+            <td><span class="badge <%= item.is_active ? 'badge-green' : 'badge-red' %>"><%= item.is_active ? 'Aktif' : 'Pasif' %></span></td>
+            <td>
+              <form method="post" action="/admin/menu/sil/<%= item.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!allNav.length) { %><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">Henüz menü öğesi eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Yeni Menü Öğesi Ekle</h3>
+    <form class="admin-form" method="post" action="/admin/menu/kaydet">
+      <div class="row">
+        <div>
+          <label>Etiket</label>
+          <input name="label" placeholder="Ana Sayfa" required>
+        </div>
+        <div>
+          <label>URL</label>
+          <input name="url" placeholder="/" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Sıralama</label>
+          <input type="number" name="sort_order" value="0">
+        </div>
+        <div>
+          <label style="display:flex;align-items:center;gap:8px;margin-top:24px">
+            <input type="checkbox" name="is_active" value="1" checked style="width:auto">
+            Aktif
+          </label>
+        </div>
+      </div>
+      <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Ekle</button></div>
+    </form>
+  </div>

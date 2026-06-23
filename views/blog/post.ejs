@@ -1,0 +1,43 @@
+  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
+      <nav class="nav-links">
+        <% navItems.forEach(function(item) { %>
+          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
+        <% }) %>
+      </nav>
+      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
+        <span class="phone-icon">☎</span>
+        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="article-hero" style="overflow:hidden;position:relative;background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%);padding:72px 0;color:#fff">
+      <div style="position:absolute;inset:0;background:linear-gradient(105deg, rgba(3,29,64,.92) 0%, rgba(6,54,111,.82) 70%, rgba(11,77,148,.7) 100%), url(<%= post.image || '/assets/hero-kurulum-v2.webp' %>) center/cover no-repeat"></div>
+      <div class="container" style="position:relative;z-index:2">
+        <div class="breadcrumbs" style="color:#b7c8de"><a href="/" style="color:#b7c8de">Ana Sayfa</a> <span style="color:#b7c8de">›</span> <a href="/blog" style="color:#b7c8de">Blog</a> <span style="color:#b7c8de">›</span> <%= post.title %></div>
+        <% if (post.category) { %><span class="tag"><%= post.category %></span><% } %>
+        <h1 style="color:#fff;font-size:clamp(34px,4.5vw,58px);margin-bottom:15px"><%= post.title %></h1>
+        <div class="meta" style="color:#b7c8de;font-size:14px"><%= post.published_at ? new Date(post.published_at).toLocaleDateString('tr-TR',{year:'numeric',month:'long',day:'numeric'}) : '' %> · <%= post.reading_time %> · <%= post.author %></div>
+      </div>
+    </section>
+    <section class="article-body" style="padding:60px 0">
+      <div class="container" style="max-width:780px">
+        <%- post.content %>
+        <div class="article-nav" style="border-top:1px solid var(--line);padding:24px 0;margin-top:48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <% if (prev) { %><a class="text-link" href="/blog/<%= prev.slug %>">← Önceki: <%= prev.title %></a><% } else { %><span></span><% } %>
+          <% if (next) { %><a class="text-link" href="/blog/<%= next.slug %>">Sonraki: <%= next.title %> →</a><% } else { %><span></span><% } %>
+        </div>
+      </div>
+    </section>
+    <section class="article-cta" style="background:var(--soft);padding:48px 0;text-align:center">
+      <div class="container">
+        <h2>Teknik Destek Alın</h2>
+        <p style="color:var(--muted);max-width:560px;margin:0 auto 24px">Kamera sisteminizle ilgili sorun mu yaşıyorsunuz? Uzman ekibimiz size yardımcı olsun.</p>
+        <a class="btn btn-green" href="<%= whatsappUrl %>">WhatsApp'tan Destek Al →</a>
+      </div>
+    </section>
+  </main>

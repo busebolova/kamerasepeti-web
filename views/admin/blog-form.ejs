@@ -1,0 +1,60 @@
+  <div class="admin-topbar">
+    <h1><%= post ? 'Blog Yazısını Düzenle' : 'Yeni Blog Yazısı' %></h1>
+    <a href="/admin/blog" class="btn btn-sm" style="min-height:auto;background:var(--muted)">← Geri</a>
+  </div>
+  <div class="admin-card">
+    <form class="admin-form" method="post" action="/admin/blog/kaydet">
+      <% if (post) { %><input type="hidden" name="id" value="<%= post.id %>"><% } %>
+      <div class="row">
+        <div>
+          <label>Başlık</label>
+          <input name="title" value="<%= post ? post.title : '' %>" required>
+        </div>
+        <div>
+          <label>Slug (URL)</label>
+          <input name="slug" value="<%= post ? post.slug : '' %>" placeholder="ornek-yazi" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Kategori</label>
+          <input name="category" value="<%= post ? post.category : '' %>" placeholder="Güvenlik">
+        </div>
+        <div>
+          <label>Etiketler (virgülle ayırın)</label>
+          <input name="tags" value="<%= post ? post.tags : '' %>">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Özet</label>
+          <textarea name="summary" rows="3"><%= post ? post.summary : '' %></textarea>
+        </div>
+        <div>
+          <label>Görsel URL</label>
+          <input name="image" value="<%= post ? post.image : '' %>" placeholder="/assets/hero-kurulum-v2.webp">
+          <label>Yazar</label>
+          <input name="author" value="<%= post ? post.author : 'Kamera Sepeti Uzman Ekibi' %>">
+          <label>Okuma Süresi</label>
+          <input name="reading_time" value="<%= post ? post.reading_time : '4 dk okuma' %>">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Yayın Tarihi</label>
+          <input type="date" name="published_at" value="<%= post && post.published_at ? post.published_at.slice(0,10) : new Date().toISOString().slice(0,10) %>">
+        </div>
+        <div>
+          <label style="display:flex;align-items:center;gap:8px;margin-top:24px">
+            <input type="checkbox" name="is_published" value="1" <%= post && post.is_published ? 'checked' : 'checked' %> style="width:auto">
+            Yayında
+          </label>
+        </div>
+      </div>
+      <label>İçerik (HTML)</label>
+      <textarea name="content" rows="20" style="font-family:monospace;font-size:13px"><%= post ? post.content : '' %></textarea>
+      <div class="admin-actions">
+        <button type="submit" class="btn btn-orange" style="min-height:auto">Kaydet</button>
+      </div>
+    </form>
+  </div>

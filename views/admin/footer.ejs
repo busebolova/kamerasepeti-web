@@ -1,0 +1,50 @@
+  <div class="admin-topbar"><h1>Footer Yönetimi</h1></div>
+  <% sections.forEach(function(section) { %>
+    <div class="admin-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h3><%= section.title %></h3>
+        <form method="post" action="/admin/footer/section/sil/<%= section.id %>" style="display:inline" onsubmit="return confirm('Bu bölümü silmek istediğinize emin misiniz?')">
+          <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Bölümü Sil</button>
+        </form>
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>Etiket</th><th>URL</th><th class="action-col">İşlem</th></tr></thead>
+        <tbody>
+          <% (sectionLinks[section.id] || []).forEach(function(link) { %>
+            <tr>
+              <td><%= link.label %></td>
+              <td><%= link.url %></td>
+              <td>
+                <form method="post" action="/admin/footer/link/sil/<%= link.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                  <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+          <% if (!sectionLinks[section.id] || !sectionLinks[section.id].length) { %><tr><td colspan="3" style="text-align:center;color:var(--muted);padding:16px">Henüz link eklenmemiş.</td></tr><% } %>
+        </tbody>
+      </table>
+      <details style="margin-top:10px">
+        <summary style="cursor:pointer;font-size:13px;color:var(--blue);font-weight:600">Link Ekle</summary>
+        <form class="admin-form" method="post" action="/admin/footer/link/kaydet" style="margin-top:10px">
+          <input type="hidden" name="section_id" value="<%= section.id %>">
+          <div class="row">
+            <div><label>Etiket</label><input name="label" required></div>
+            <div><label>URL</label><input name="url" required></div>
+          </div>
+          <input type="hidden" name="sort_order" value="0">
+          <div class="admin-actions"><button type="submit" class="btn btn-sm btn-orange" style="min-height:auto">Ekle</button></div>
+        </form>
+      </details>
+    </div>
+  <% }) %>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Yeni Footer Bölümü</h3>
+    <form class="admin-form" method="post" action="/admin/footer/section/kaydet">
+      <div class="row">
+        <div><label>Bölüm Başlığı</label><input name="title" placeholder="Hızlı Bağlantılar" required></div>
+        <div><label>Sıralama</label><input type="number" name="sort_order" value="0"></div>
+      </div>
+      <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Bölüm Ekle</button></div>
+    </form>
+  </div>

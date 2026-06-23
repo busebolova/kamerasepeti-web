@@ -1,0 +1,27 @@
+  <div class="admin-topbar">
+    <h1>Paketler</h1>
+    <a href="/admin/paketler/yeni" class="btn btn-orange btn-sm" style="min-height:auto">+ Yeni Paket</a>
+  </div>
+  <div class="admin-card">
+    <table class="admin-table">
+      <thead><tr><th>Ad</th><th>Fiyat</th><th>Popüler</th><th>Durum</th><th>Sıra</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% packages.forEach(function(p) { %>
+          <tr>
+            <td><strong><%= p.name %></strong></td>
+            <td><%= (p.price || 0).toLocaleString('tr-TR') %> <%= p.price_label %></td>
+            <td><%= p.is_popular ? '🔥' : '-' %></td>
+            <td><span class="badge <%= p.is_published ? 'badge-green' : 'badge-red' %>"><%= p.is_published ? 'Yayında' : 'Taslak' %></span></td>
+            <td><%= p.sort_order %></td>
+            <td>
+              <a href="/admin/paketler/duzenle/<%= p.id %>" class="btn btn-sm" style="min-height:auto;background:var(--blue)">Düzenle</a>
+              <form method="post" action="/admin/paketler/sil/<%= p.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!packages.length) { %><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">Henüz paket eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>

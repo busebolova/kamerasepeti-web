@@ -1,0 +1,23 @@
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="<%= logoLight %>" alt="<%= siteName %>">
+          <p>Profesyonel güvenlik kamerası çözümleri.</p>
+        </div>
+        <% footerData.forEach(function(section) { %>
+          <div>
+            <h3><%= section.title %></h3>
+            <div class="footer-links">
+              <% section.links.forEach(function(link) { %>
+                <a href="<%= link.url %>"><%= link.label %></a>
+              <% }) %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 <%= siteName %></span>
+      </div>
+    </div>
+  </footer>

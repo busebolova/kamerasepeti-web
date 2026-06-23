@@ -1,0 +1,48 @@
+  <div class="admin-topbar"><h1>Medya Yönetimi</h1></div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Dosya Yükle</h3>
+    <form class="admin-form" method="post" action="/admin/medya/yukle" enctype="multipart/form-data" style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <label>Dosya Seç (max 10MB)</label>
+        <input type="file" name="file" required style="padding:8px">
+      </div>
+      <div style="flex:1;min-width:150px">
+        <label>Alt Metin</label>
+        <input name="alt_text" placeholder="Görsel açıklaması">
+      </div>
+      <button type="submit" class="btn btn-orange" style="min-height:auto;margin-bottom:3px">Yükle</button>
+    </form>
+  </div>
+  <div class="admin-card">
+    <div class="media-grid">
+      <% media.forEach(function(m) { %>
+        <div class="media-item">
+          <% if (m.mime_type && m.mime_type.startsWith('video/')) { %>
+            <video src="/uploads/<%= m.filename %>" style="height:120px;width:100%;object-fit:cover"></video>
+          <% } else { %>
+            <img src="/uploads/<%= m.filename %>" alt="<%= m.alt_text %>" loading="lazy">
+          <% } %>
+          <div class="info">
+            <div><%= m.original_name.length > 25 ? m.original_name.slice(0,22)+'...' : m.original_name %></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+              <span><%= (m.size / 1024).toFixed(0) %> KB</span>
+              <form method="post" action="/admin/medya/sil/<%= m.id %>" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button class="del" type="submit">✕</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+      <% if (!media.length) { %><p style="color:var(--muted);text-align:center;padding:32px;grid-column:1/-1">Henüz medya dosyası yüklenmemiş.</p><% } %>
+    </div>
+  </div>
+  <% if (media.length) { %>
+  <div class="admin-card">
+    <h3 style="margin-bottom:8px">Yükleme Linkleri (CKEditor için)</h3>
+    <div style="font-size:12px;max-height:200px;overflow-y:auto;background:#f5f7fa;padding:10px;border-radius:8px">
+      <% media.forEach(function(m) { %>
+        <code style="display:block;padding:2px 0">/uploads/<%= m.filename %></code>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>

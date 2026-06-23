@@ -1,0 +1,72 @@
+  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
+      <nav class="nav-links">
+        <% navItems.forEach(function(item) { %>
+          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
+        <% }) %>
+      </nav>
+      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
+        <span class="phone-icon">☎</span>
+        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%);overflow:hidden;position:relative">
+      <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(3,29,64,.92) 0%,rgba(6,54,111,.82) 70%,rgba(11,77,148,.7) 100%),url(/assets/blog-referans.png) center/cover no-repeat"></div>
+      <div class="container" style="position:relative;z-index:2">
+        <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Referanslar</div>
+        <h1>Referanslarımız</h1>
+        <p>250'den fazla mutlu müşterimizle gurur duyuyoruz.</p>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="container">
+        <div class="ref-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:56px;text-align:center">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">250+</b><br><span style="color:var(--muted)">Kurulum</span></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">4.9</b><br><span style="color:var(--muted)">Ortalama Puan</span></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">50+</b><br><span style="color:var(--muted)">Proje</span></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">2 Yıl</b><br><span style="color:var(--muted)">Garanti</span></div>
+        </div>
+        <div style="text-align:center;margin-bottom:44px">
+          <div class="eyebrow" style="justify-content:center">Müşteri Yorumları</div>
+          <h2>Müşterilerimiz Ne Diyor?</h2>
+        </div>
+        <div class="ref-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
+          <% testimonials.forEach(function(t) { %>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(16,46,86,.055)">
+              <div style="color:#f5a623;font-size:18px;margin-bottom:12px"><% for (var s = 0; s < (t.rating || 5); s++) { %>★<% } %></div>
+              <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:18px">"<%= t.content %>"</p>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800"><%= t.name.charAt(0) %></div>
+                <div><b><%= t.name %></b><br><span style="color:var(--muted);font-size:13px"><%= t.title || t.company %></span></div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:44px">
+          <div class="eyebrow" style="justify-content:center">Projelerimiz</div>
+          <h2>Tamamlanan Projeler</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          <% projects.forEach(function(p) { %>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(16,46,86,.055)">
+              <div style="height:200px;overflow:hidden;background:#dce5ef"><img src="<%= p.image || '/assets/hero-kurulum-v2.webp' %>" alt="<%= p.title %>" style="width:100%;height:100%;object-fit:cover"></div>
+              <div style="padding:20px">
+                <div style="color:var(--orange);font-size:12px;font-weight:800;text-transform:uppercase;margin-bottom:6px"><%= p.category %></div>
+                <h3 style="font-size:18px"><%= p.title %></h3>
+                <p style="color:var(--muted);font-size:14px;margin-bottom:0"><%= p.description %></p>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+  </main>

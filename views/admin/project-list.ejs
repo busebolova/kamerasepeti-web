@@ -1,0 +1,26 @@
+  <div class="admin-topbar">
+    <h1>Projeler</h1>
+    <a href="/admin/projeler/yeni" class="btn btn-orange btn-sm" style="min-height:auto">+ Yeni Proje</a>
+  </div>
+  <div class="admin-card">
+    <table class="admin-table">
+      <thead><tr><th>Başlık</th><th>Kategori</th><th>Müşteri</th><th>Durum</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% projects.forEach(function(p) { %>
+          <tr>
+            <td><strong><%= p.title %></strong></td>
+            <td><%= p.category || '-' %></td>
+            <td><%= p.client || '-' %></td>
+            <td><span class="badge <%= p.is_published ? 'badge-green' : 'badge-red' %>"><%= p.is_published ? 'Yayında' : 'Taslak' %></span></td>
+            <td>
+              <a href="/admin/projeler/duzenle/<%= p.id %>" class="btn btn-sm" style="min-height:auto;background:var(--blue)">Düzenle</a>
+              <form method="post" action="/admin/projeler/sil/<%= p.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!projects.length) { %><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">Henüz proje eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>

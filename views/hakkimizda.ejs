@@ -1,0 +1,44 @@
+  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
+      <nav class="nav-links">
+        <% navItems.forEach(function(item) { %>
+          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
+        <% }) %>
+      </nav>
+      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
+        <span class="phone-icon">☎</span>
+        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%);overflow:hidden;position:relative">
+      <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(3,29,64,.92) 0%,rgba(6,54,111,.82) 70%,rgba(11,77,148,.7) 100%),url(<%= page && page.hero_image ? page.hero_image : '/assets/hakkimizda-resim.webp' %>) center/cover no-repeat"></div>
+      <div class="container" style="position:relative;z-index:2">
+        <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Hakkımızda</div>
+        <h1><%= page ? page.hero_title || 'Hakkımızda' : 'Hakkımızda' %></h1>
+        <p><%= page ? page.hero_subtitle || '' : '' %></p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div><div class="image-panel"><img src="/assets/hakkimizda-resim.webp" alt="Kamera Sepeti Ekibi" loading="lazy"></div></div>
+          <div>
+            <div class="eyebrow">Hakkımızda</div>
+            <h2>Güvenlikte Lider Çözüm Ortağınız</h2>
+            <p><%= page && page.content ? page.content : 'Kamera Sepeti olarak, yılların deneyimiyle ev ve iş yeriniz için en uygun güvenlik çözümlerini sunuyoruz. Müşteri memnuniyetini her şeyin önünde tutarak, kaliteli ürünleri uygun fiyatlarla buluşturuyoruz.' %></p>
+            <ul class="check-list">
+              <li>Profesyonel Kurulum</li>
+              <li>7/24 Teknik Destek</li>
+              <li>2 Yıl Garanti</li>
+              <li>Ücretsiz Keşif</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

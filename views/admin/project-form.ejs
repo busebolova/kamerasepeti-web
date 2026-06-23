@@ -1,0 +1,40 @@
+  <div class="admin-topbar">
+    <h1><%= p ? 'Projeyi Düzenle' : 'Yeni Proje' %></h1>
+    <a href="/admin/projeler" class="btn btn-sm" style="min-height:auto;background:var(--muted)">← Geri</a>
+  </div>
+  <div class="admin-card">
+    <form class="admin-form" method="post" action="/admin/projeler/kaydet">
+      <% if (p) { %><input type="hidden" name="id" value="<%= p.id %>"><% } %>
+      <div class="row">
+        <div>
+          <label>Proje Adı</label>
+          <input name="title" value="<%= p ? p.title : '' %>" required>
+        </div>
+        <div>
+          <label>Kategori</label>
+          <input name="category" value="<%= p ? p.category : '' %>" placeholder="Güvenlik / Akıllı Ev">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Müşteri</label>
+          <input name="client" value="<%= p ? p.client : '' %>" placeholder="AVM / Fabrika">
+        </div>
+        <div>
+          <label>Sıralama</label>
+          <input type="number" name="sort_order" value="<%= p ? p.sort_order : 0 %>">
+        </div>
+      </div>
+      <label>Açıklama</label>
+      <textarea name="description" rows="5"><%= p ? p.description : '' %></textarea>
+      <label>Görsel URL</label>
+      <input name="image" value="<%= p ? p.image : '' %>" placeholder="/uploads/proje.jpg">
+      <label style="display:flex;align-items:center;gap:8px;margin-top:14px">
+        <input type="checkbox" name="is_published" value="1" <%= p && !p.is_published ? '' : 'checked' %> style="width:auto">
+        Yayında
+      </label>
+      <div class="admin-actions">
+        <button type="submit" class="btn btn-orange" style="min-height:auto">Kaydet</button>
+      </div>
+    </form>
+  </div>

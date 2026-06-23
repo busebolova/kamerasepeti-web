@@ -1,0 +1,112 @@
+<% include('partials/preloader') %>
+<section class="hero" style="background-image:url(<%= heroBg || '/assets/hero-kurulum-v2.webp' %>)">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Kurulum Destekli</div>
+        <h1><%= heroTitle || 'Profesyonel Güvenlik Kamerası Çözümleri' %></h1>
+        <p><%= heroDesc || '7 gün 24 saat güvenliğiniz için en kaliteli kamera sistemlerini kurulum desteğiyle sunuyoruz.' %></p>
+        <div class="benefits">
+          <div class="benefit"><i>✓</i> Ücretsiz Keşif</div>
+          <div class="benefit"><i>✓</i> 2 Yıl Garanti</div>
+          <div class="benefit"><i>✓</i> Profesyonel Kurulum</div>
+        </div>
+        <a class="btn btn-orange" href="/paketler">Paketleri İncele →</a>
+        <div class="hero-proof">
+          <i class="icon-box">★</i>
+          <span>250+ Mutlu Müşteri<small>4.9 Ortalama Puan</small></span>
+        </div>
+      </div>
+      <div class="hero-visual"></div>
+    </div>
+  </div>
+</section>
+
+<section class="trustbar">
+  <div class="container">
+    <div class="trust-grid">
+      <% trustItems.forEach(function(item) { %>
+        <div class="trust-item">
+          <div>
+            <b><%= item.number %></b>
+            <span><%= item.label %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Hizmetlerimiz</div>
+        <h2>Güvenlik İhtiyaçlarınıza<br>Özel Çözümler</h2>
+        <p>Her ortama ve bütçeye uygun kamera sistemleri ile iş yerinizi veya evinizi 7/24 koruma altına alın.</p>
+      </div>
+    </div>
+    <div class="service-grid">
+      <% services.forEach(function(svc) { %>
+        <div class="service-card">
+          <div class="service-photo"><img src="<%= svc.image %>" alt="<%= svc.title %>" loading="lazy"></div>
+          <div class="card-body">
+            <h3><%= svc.title %></h3>
+            <p><%= svc.desc %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <div class="split">
+      <div><div class="image-panel"><img src="/assets/hakkimizda-resim.webp" alt="Kamera Sepeti Ekibi" loading="lazy"></div></div>
+      <div>
+        <div class="eyebrow">Hakkımızda</div>
+        <h2>Güvenlikte Lider Çözüm Ortağınız</h2>
+        <p>Kamera Sepeti olarak, yılların deneyimiyle ev ve iş yeriniz için en uygun güvenlik çözümlerini sunuyoruz.</p>
+        <ul class="check-list">
+          <li>Profesyonel Kurulum</li>
+          <li>7/24 Teknik Destek</li>
+          <li>2 Yıl Garanti</li>
+          <li>Ücretsiz Keşif</li>
+        </ul>
+        <a class="btn" href="/hakkimizda">Detaylı Bilgi →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Nasıl Çalışıyoruz</div>
+        <h2>Adım Adım Çözüm Sürecimiz</h2>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <% steps.forEach(function(step) { %>
+        <div class="step-card">
+          <h3><%= step.title %></h3>
+          <p><%= step.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>Hemen Ücretsiz Keşif Randevusu Alın</h2>
+        <p>Size özel çözümümüzü ve fiyat teklifimizi görmek için hemen iletişime geçin.</p>
+      </div>
+      <a class="btn btn-orange" href="/iletisim">İletişime Geç →</a>
+    </div>
+  </div>
+</section>

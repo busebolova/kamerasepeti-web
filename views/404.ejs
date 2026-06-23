@@ -1,0 +1,26 @@
+  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
+      <nav class="nav-links">
+        <% navItems.forEach(function(item) { %>
+          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
+        <% }) %>
+      </nav>
+      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
+        <span class="phone-icon">☎</span>
+        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="section" style="min-height:60vh;display:grid;place-items:center;text-align:center">
+      <div class="container">
+        <h1 style="font-size:clamp(72px,10vw,120px);color:var(--orange);margin-bottom:0">404</h1>
+        <h2>Sayfa Bulunamadı</h2>
+        <p style="color:var(--muted);max-width:500px;margin:0 auto 32px">Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanılamıyor olabilir.</p>
+        <a class="btn btn-orange" href="/">Ana Sayfaya Dön →</a>
+      </div>
+    </section>
+  </main>

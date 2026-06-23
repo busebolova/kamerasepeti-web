@@ -1,0 +1,74 @@
+  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
+      <nav class="nav-links">
+        <% navItems.forEach(function(item) { %>
+          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
+        <% }) %>
+      </nav>
+      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
+        <span class="phone-icon">☎</span>
+        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%)">
+      <div class="container">
+        <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> İletişim</div>
+        <h1>İletişim</h1>
+        <p>Size nasıl yardımcı olabiliriz? Bize ulaşın, uzman ekibimiz sizi bilgilendirsin.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+          <div>
+            <div class="whatsapp-box">
+              <div><strong>Hemen WhatsApp'tan Yazın</strong><span style="font-size:14px;opacity:.9">Hızlı yanıt için bize yazın</span></div>
+              <a class="btn" href="<%= whatsappUrl %>" style="background:rgba(255,255,255,.22);min-height:48px">◉ WhatsApp</a>
+            </div>
+            <div class="contact-cards">
+              <% contactInfo.forEach(function(ci) { %>
+                <div class="contact-card">
+                  <div style="font-size:24px;margin-bottom:10px"><%= ci.icon || '📌' %></div>
+                  <h3 style="font-size:15px"><%= ci.label %></h3>
+                  <p><%= ci.value %></p>
+                </div>
+              <% }) %>
+            </div>
+          </div>
+          <div>
+            <div class="form-card">
+              <div class="form-title"><h3>Teklif Formu</h3><p style="color:#cbd8e9;margin:0;font-size:14px">Size özel teklif için formu doldurun</p></div>
+              <form class="contact-form" id="teklifForm">
+                <div class="field"><label>Adınız Soyadınız</label><input name="name" required></div>
+                <div class="field"><label>Telefon Numaranız</label><input name="phone" type="tel" required></div>
+                <div class="field"><label>İlginiz</label><select name="service"><option>Güvenlik Kamerası</option><option>Ev Tipi Kamera</option><option>İş Yeri Kamera Sistemi</option><option>IP Kamera Sistemi</option><option>Diğer</option></select></div>
+                <div class="field"><label>Mesajınız</label><textarea name="message"></textarea></div>
+                <button class="btn btn-orange" type="submit" style="width:100%">Gönder</button>
+              </form>
+            </div>
+            <div class="map">
+              <div><strong>Kamera Sepeti</strong><br><%= sitePhone %><br><span style="color:#64748b">Hizmet Bölgemiz: İstanbul ve Çevresi</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+  document.getElementById('teklifForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Gönderiliyor...';
+    const fd = new FormData(this);
+    try {
+      const r = await fetch('/api/teklif', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.fromEntries(fd)) });
+      if (r.ok) { btn.textContent = 'Gönderildi ✓'; setTimeout(() => location.reload(), 1500); }
+      else { alert('Bir hata oluştu, lütfen tekrar deneyin.'); btn.disabled = false; btn.textContent = 'Gönder'; }
+    } catch(e) { alert('Bir hata oluştu.'); btn.disabled = false; btn.textContent = 'Gönder'; }
+  });
+  </script>

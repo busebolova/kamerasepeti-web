@@ -1,0 +1,45 @@
+  <div class="admin-topbar"><h1>İletişim Bilgileri</h1></div>
+  <div class="admin-card">
+    <table class="admin-table">
+      <thead><tr><th>Etiket</th><th>Değer</th><th>Tip</th><th>Sıra</th><th class="action-col">İşlem</th></tr></thead>
+      <tbody>
+        <% info.forEach(function(item) { %>
+          <tr>
+            <td><strong><%= item.label %></strong></td>
+            <td><%= item.value %></td>
+            <td><%= item.type %></td>
+            <td><%= item.sort_order %></td>
+            <td>
+              <form method="post" action="/admin/iletisim/sil/<%= item.id %>" style="display:inline" onsubmit="return confirm('Silmek istediğinize emin misiniz?')">
+                <button type="submit" class="btn btn-sm btn-danger" style="min-height:auto">Sil</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (!info.length) { %><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">Henüz iletişim bilgisi eklenmemiş.</td></tr><% } %>
+      </tbody>
+    </table>
+  </div>
+  <div class="admin-card">
+    <h3 style="margin-bottom:12px">Yeni İletişim Bilgisi Ekle</h3>
+    <form class="admin-form" method="post" action="/admin/iletisim/kaydet">
+      <div class="row">
+        <div><label>Etiket</label><input name="label" placeholder="Telefon" required></div>
+        <div><label>Değer</label><input name="value" placeholder="0552 460 20 20" required></div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Tip</label>
+          <select name="type">
+            <option value="phone">Telefon</option>
+            <option value="email">E-posta</option>
+            <option value="address">Adres</option>
+            <option value="text">Metin</option>
+          </select>
+        </div>
+        <div><label>İkon (emoji)</label><input name="icon" placeholder="📞"></div>
+      </div>
+      <input type="hidden" name="sort_order" value="0">
+      <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Ekle</button></div>
+    </form>
+  </div>

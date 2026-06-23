@@ -1,0 +1,40 @@
+  <div class="admin-topbar"><h1>Site Ayarları</h1></div>
+  <div class="admin-card">
+    <form class="admin-form" method="post" action="/admin/ayarlar">
+      <h3 style="margin-bottom:8px">Genel Ayarlar</h3>
+      <div class="row">
+        <div><label>Site Adı</label><input name="site_name" value="<%= settings.site_name || 'Kamera Sepeti' %>"></div>
+        <div><label>Site Telefon</label><input name="site_phone" value="<%= settings.site_phone || '0552 460 20 20' %>"></div>
+      </div>
+      <div class="row">
+        <div><label>WhatsApp URL</label><input name="whatsapp_url" value="<%= settings.whatsapp_url || 'https://wa.me/905524602020' %>"></div>
+        <div><label>Favicon Yolu</label><input name="favicon" value="<%= settings.favicon || '/assets/favicon.png' %>"></div>
+      </div>
+      <div class="row">
+        <div><label>Logo (Beyaz)</label><input name="logo_light" value="<%= settings.logo_light || '/assets/logo-beyaz.png' %>"></div>
+        <div><label>Logo (Renkli)</label><input name="logo_dark" value="<%= settings.logo_dark || '/assets/logo-renkli.png' %>"></div>
+      </div>
+
+      <h3 style="margin-bottom:8px;margin-top:24px">Ana Sayfa</h3>
+      <div class="row">
+        <div><label>Hero Başlık</label><input name="hero_title" value="<%= settings.hero_title || '' %>"></div>
+        <div><label>Hero Açıklama</label><input name="hero_desc" value="<%= settings.hero_desc || '' %>"></div>
+      </div>
+      <label>Hero Arkaplan Görseli</label>
+      <input name="hero_bg" value="<%= settings.hero_bg || '/assets/hero-kurulum-v2.webp' %>">
+
+      <label style="margin-top:14px">Güven Sayıları (JSON)</label>
+      <textarea name="home_trust" rows="4" style="font-family:monospace;font-size:12px"><%= settings.home_trust || '[{"number":"250+","label":"Kurulum"},{"number":"4.9","label":"Puan"},{"number":"50+","label":"Proje"},{"number":"2","label":"Yıl Garanti"}]' %></textarea>
+
+      <label style="margin-top:14px">Hizmetler (JSON)</label>
+      <textarea name="home_services" rows="6" style="font-family:monospace;font-size:12px"><%= settings.home_services || '[]' %></textarea>
+
+      <label style="margin-top:14px">Adımlar (JSON)</label>
+      <textarea name="home_steps" rows="6" style="font-family:monospace;font-size:12px"><%= settings.home_steps || '[]' %></textarea>
+
+      <label style="margin-top:14px">Paketler Sayfası SSS (JSON)</label>
+      <textarea name="paketler_faq" rows="6" style="font-family:monospace;font-size:12px"><%= settings.paketler_faq || '[]' %></textarea>
+
+      <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Tüm Ayarları Kaydet</button></div>
+    </form>
+  </div>
