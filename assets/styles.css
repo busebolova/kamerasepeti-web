@@ -155,7 +155,11 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 .breadcrumbs { font-size: 13px; color: #b7c8de; margin-bottom: 16px; }
 
 .packages-top { text-align: center; max-width: 760px; margin: 0 auto 44px; }
-.package-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; align-items: start; }
+.package-category { margin-bottom: 56px; }
+.package-category:last-child { margin-bottom: 0; }
+.package-category h2 { text-align: center; margin-bottom: 4px; }
+.package-category > p { text-align: center; color: var(--muted); margin-bottom: 28px; }
+.package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
 .package-card { position: relative; }
 .package-card.featured { border-color: #ffb08d; box-shadow: 0 20px 55px rgba(255,90,22,.12); }
 .package-head { padding: 27px; background: var(--navy); color: #fff; }
@@ -262,8 +266,8 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .nav-links a[href="/iletisim"]::before { content: "☎"; }
   .nav-links a::after { display: none; }
   .nav-links a.active { color: #fff; background: var(--orange); }
-  body { padding-bottom: 82px; }
-  .floating-whatsapp { bottom: 94px; }
+  body { padding-bottom: 0; }
+  .floating-whatsapp { bottom: 24px; }
   .hero { min-height: auto; }
   .hero-grid, .split, .contact-layout { grid-template-columns: 1fr; }
   .hero { background-position: 62% top; background-size: auto 480px; background-repeat: no-repeat; padding-top: 430px; }
@@ -271,7 +275,7 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .hero-visual { display: none; }
   .hero-copy { padding: 44px 0 70px; }
   .service-grid, .steps-grid, .package-grid { grid-template-columns: 1fr 1fr; }
-  .package-card:last-child { grid-column: 1 / -1; }
+  .package-card:last-child { grid-column: auto; }
   .blog-layout { grid-template-columns: 1fr; }
   .sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }

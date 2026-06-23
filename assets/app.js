@@ -5,14 +5,6 @@ toggle?.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', links?.classList.contains('open') ? 'true' : 'false');
 });
 
-document.querySelectorAll('.package-select').forEach((select) => {
-  const card = select.closest('.package-card');
-  const price = card?.querySelector('.price-value');
-  select.addEventListener('change', () => {
-    if (price) price.textContent = select.selectedOptions[0].dataset.price;
-  });
-});
-
 document.getElementById('contactForm')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const form = event.currentTarget;

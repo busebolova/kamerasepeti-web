@@ -35,6 +35,21 @@
       <label style="margin-top:14px">Paketler Sayfası SSS (JSON)</label>
       <textarea name="paketler_faq" rows="6" style="font-family:monospace;font-size:12px"><%= settings.paketler_faq || '[]' %></textarea>
 
+      <h3 style="margin-bottom:8px;margin-top:24px">Paketler Sayfası</h3>
+      <div class="row">
+        <div><label>Hero Başlık</label><input name="paketler_hero_title" value="<%= settings.paketler_hero_title || 'Kamera Sistemleri Paketleri' %>"></div>
+        <div><label>Hero Açıklama</label><input name="paketler_hero_desc" value="<%= settings.paketler_hero_desc || 'İhtiyacınıza ve bütçenize en uygun güvenlik kamerası paketini seçin, biz profesyonelce kuralım.' %>"></div>
+      </div>
+
+      <h3 style="margin-bottom:8px;margin-top:24px">Hakkımızda Sayfası</h3>
+      <label>Görseller (JSON)</label>
+      <textarea name="hakkimizda_images" rows="4" style="font-family:monospace;font-size:12px"><%= settings.hakkimizda_images || '{"hero":"/assets/hero-kurulum-v2.webp","body":"/assets/hakkimizda-resim.webp"}' %></textarea>
+
+      <h3 style="margin-bottom:8px;margin-top:24px">Referanslar Sayfası</h3>
+      <div class="row">
+        <div><label>Hero Arkaplan Görseli</label><input name="ref_hero_bg" value="<%= settings.ref_hero_bg || '/assets/blog-referans.png' %>"></div>
+      </div>
+
       <div class="admin-actions"><button type="submit" class="btn btn-orange" style="min-height:auto">Tüm Ayarları Kaydet</button></div>
     </form>
   </div>

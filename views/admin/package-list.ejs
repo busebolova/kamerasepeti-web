@@ -4,11 +4,12 @@
   </div>
   <div class="admin-card">
     <table class="admin-table">
-      <thead><tr><th>Ad</th><th>Fiyat</th><th>Popüler</th><th>Durum</th><th>Sıra</th><th class="action-col">İşlem</th></tr></thead>
+      <thead><tr><th>Ad</th><th>Kategori</th><th>Fiyat</th><th>Popüler</th><th>Durum</th><th>Sıra</th><th class="action-col">İşlem</th></tr></thead>
       <tbody>
         <% packages.forEach(function(p) { %>
           <tr>
             <td><strong><%= p.name %></strong></td>
+            <td><%= p.category || 'ekonomik' %></td>
             <td><%= (p.price || 0).toLocaleString('tr-TR') %> <%= p.price_label %></td>
             <td><%= p.is_popular ? '🔥' : '-' %></td>
             <td><span class="badge <%= p.is_published ? 'badge-green' : 'badge-red' %>"><%= p.is_published ? 'Yayında' : 'Taslak' %></span></td>
@@ -21,7 +22,7 @@
             </td>
           </tr>
         <% }) %>
-        <% if (!packages.length) { %><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">Henüz paket eklenmemiş.</td></tr><% } %>
+        <% if (!packages.length) { %><tr><td colspan="7" style="text-align:center;color:var(--muted);padding:32px">Henüz paket eklenmemiş.</td></tr><% } %>
       </tbody>
     </table>
   </div>

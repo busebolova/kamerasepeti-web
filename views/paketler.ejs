@@ -1,8 +1,8 @@
     <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%)">
       <div class="container">
         <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Paketler</div>
-        <h1>Kamera Sistemleri Paketleri</h1>
-        <p>İhtiyacınıza ve bütçenize en uygun güvenlik kamerası paketini seçin, biz profesyonelce kuralım.</p>
+        <h1><%= heroTitle || 'Kamera Sistemleri Paketleri' %></h1>
+        <p><%= heroDesc || 'İhtiyacınıza ve bütçenize en uygun güvenlik kamerası paketini seçin, biz profesyonelce kuralım.' %></p>
       </div>
     </section>
     <section class="section">
@@ -11,38 +11,54 @@
           <div class="eyebrow" style="justify-content:center">Paketlerimiz</div>
           <h2 style="text-align:center">Size Özel Çözümler</h2>
         </div>
-        <div class="package-grid">
-          <% packages.forEach(function(p) { %>
-            <div class="package-card<%= p.is_popular ? ' featured' : '' %>">
-              <% if (p.is_popular) { %><span class="popular">En Popüler</span><% } %>
-              <div class="package-head">
-                <h3><%= p.name %></h3>
-                <p><%= p.subtitle %></p>
-              </div>
-              <div class="package-body">
-                <div class="price" data-base-price="<%= p.price %>" data-pricing='<%= p.pricing ? JSON.stringify(p.pricing) : '' %>'><%= (p.price || 'Sorunuz').toLocaleString('tr-TR') %> <small><%= p.price_label || 'TL + KDV' %></small></div>
-                <select class="package-select" aria-label="Kamera sayısı">
-                  <option value="">Kamera Sayısı Seçin</option>
-                  <% if (p.pricing && p.pricing.length) { %>
-                    <% p.pricing.forEach(function(pr) { %>
-                      <option value="<%= pr.count %>"><%= pr.count %> Kamera — <%= pr.price.toLocaleString('tr-TR') %> TL</option>
-                    <% }); %>
-                  <% } else { %>
-                    <% for (var i = 2; i <= 16; i+=2) { %>
-                      <option value="<%= i %>"><%= i %> Kamera</option>
-                    <% } %>
-                  <% } %>
-                </select>
-                <ul class="package-features">
-                  <% (p.features || '').split('\n').filter(Boolean).forEach(function(f) { %>
-                    <li><%= f %></li>
-                  <% }) %>
-                </ul>
-                <a class="btn<%= p.is_popular ? ' btn-orange' : '' %>" href="https://wa.me/905524602020?text=Merhaba,%20<%= encodeURIComponent(p.name) %>%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">Hemen Teklif Al</a>
-              </div>
+
+        <% var categories = [
+          { key: 'ekonomik', label: 'Ekonomik Paketler', desc: 'Uygun fiyatlı başlangıç çözümleri' },
+          { key: 'premium', label: 'Premium Paketler', desc: 'Orta ve büyük ölçekli işletmeler için' },
+          { key: 'pro_ip', label: 'Pro IP Paketler', desc: '4K ultra HD çözümler' }
+        ]; %>
+        <% categories.forEach(function(cat) { %>
+          <% var catPackages = packages[cat.key]; %>
+          <% if (catPackages && catPackages.length) { %>
+          <div class="package-category">
+            <h2><%= cat.label %></h2>
+            <p><%= cat.desc %></p>
+            <div class="package-grid">
+              <% catPackages.forEach(function(p) { %>
+                <div class="package-card<%= p.is_popular ? ' featured' : '' %>">
+                  <% if (p.is_popular) { %><span class="popular">En Popüler</span><% } %>
+                  <div class="package-head">
+                    <h3><%= p.name %></h3>
+                    <p><%= p.subtitle %></p>
+                  </div>
+                  <div class="package-body">
+                    <div class="price" data-base-price="<%= p.price %>" data-pricing='<%= p.pricing ? JSON.stringify(p.pricing) : '' %>'><%= (p.price || 0).toLocaleString('tr-TR') %> <small><%= p.price_label || 'TL + KDV' %></small></div>
+                    <select class="package-select" aria-label="Kamera sayısı">
+                      <option value="">Kamera Sayısı Seçin</option>
+                      <% if (p.pricing && p.pricing.length) { %>
+                        <% p.pricing.forEach(function(pr) { %>
+                          <option value="<%= pr.count %>"><%= pr.count %> Kamera — <%= pr.price.toLocaleString('tr-TR') %> TL</option>
+                        <% }); %>
+                      <% } else { %>
+                        <% for (var i = 2; i <= 16; i+=2) { %>
+                          <option value="<%= i %>"><%= i %> Kamera</option>
+                        <% } %>
+                      <% } %>
+                    </select>
+                    <ul class="package-features">
+                      <% (p.features || '').split('\n').filter(Boolean).forEach(function(f) { %>
+                        <li><%= f %></li>
+                      <% }) %>
+                    </ul>
+                    <a class="btn<%= p.is_popular ? ' btn-orange' : '' %> whatsapp-btn" href="https://wa.me/905524602020?text=Merhaba,%20<%= encodeURIComponent(p.name) %>%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." data-package-name="<%= p.name %>" data-category="<%= cat.label %>">Hemen Teklif Al</a>
+                  </div>
+                </div>
+              <% }) %>
             </div>
-          <% }) %>
-        </div>
+          </div>
+          <% } %>
+        <% }) %>
+
         <% if (faq && faq.length) { %>
         <div class="compare">
           <h3 style="margin-top:48px;text-align:center">Sıkça Sorulan Sorular</h3>
@@ -62,15 +78,33 @@ document.querySelectorAll('.package-select').forEach(function(sel) {
   sel.addEventListener('change', function() {
     var card = this.closest('.package-card');
     var priceEl = card.querySelector('.price');
+    var btn = card.querySelector('.whatsapp-btn');
     if (!priceEl) return;
     var pricing = priceEl.getAttribute('data-pricing');
-    if (!pricing) return;
-    try { pricing = JSON.parse(pricing); } catch(e) { return; }
+    var basePrice = parseInt(priceEl.getAttribute('data-base-price'));
     var count = parseInt(this.value);
-    if (!count) return;
-    var found = pricing.find(function(p) { return p.count === count; });
-    if (found) {
-      priceEl.innerHTML = found.price.toLocaleString('tr-TR') + ' <small>' + priceEl.querySelector('small').textContent + '</small>';
+    if (!count) {
+      if (basePrice) {
+        priceEl.innerHTML = basePrice.toLocaleString('tr-TR') + ' <small>' + priceEl.querySelector('small').textContent + '</small>';
+      }
+      if (btn) {
+        btn.href = 'https://wa.me/905524602020?text=Merhaba,%20' + encodeURIComponent(btn.getAttribute('data-package-name')) + '%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.';
+      }
+      return;
+    }
+    if (pricing) {
+      try {
+        var parsed = JSON.parse(pricing);
+        var found = parsed.find(function(p) { return p.count === count; });
+        if (found) {
+          priceEl.innerHTML = found.price.toLocaleString('tr-TR') + ' <small>' + (priceEl.querySelector('small') ? priceEl.querySelector('small').textContent : 'TL + KDV') + '</small>';
+        }
+      } catch(e) {}
+    }
+    if (btn) {
+      var category = btn.getAttribute('data-category');
+      var msg = 'Merhaba ' + count + ' kameralı ' + category + ' pakete satın almak istiyorum detaylı bilgi alabilir miyim';
+      btn.href = 'https://wa.me/905524602020?text=' + encodeURIComponent(msg);
     }
   });
 });

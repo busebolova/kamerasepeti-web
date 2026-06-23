@@ -100,22 +100,28 @@ app.get('/', (req, res) => {
 
 // Packages
 app.get('/paketler', (req, res) => {
-  const packages = data.getAllPackages();
+  const allPackages = data.getAllPackages();
+  const packages = { ekonomik: [], premium: [], pro_ip: [] };
+  allPackages.forEach(p => { if (packages[p.category]) packages[p.category].push(p); });
+  const heroTitle = data.getSetting('paketler_hero_title', 'Kamera Sistemleri Paketleri');
+  const heroDesc = data.getSetting('paketler_hero_desc', 'İhtiyacınıza ve bütçenize en uygun güvenlik kamerası paketini seçin, biz profesyonelce kuralım.');
   const faq = JSON.parse(data.getSetting('paketler_faq', '[]'));
-  res.render('paketler', { layout: 'layout', packages, faq });
+  res.render('paketler', { layout: 'layout', packages, heroTitle, heroDesc, faq });
 });
 
 // Hakkimizda
 app.get('/hakkimizda', (req, res) => {
   const page = data.getPage('hakkimizda');
-  res.render('hakkimizda', { layout: 'layout', page });
+  const hakkimizdaImages = JSON.parse(data.getSetting('hakkimizda_images', '{"hero":"/assets/hero-kurulum-v2.webp","body":"/assets/hakkimizda-resim.webp"}'));
+  res.render('hakkimizda', { layout: 'layout', page, hakkimizdaImages });
 });
 
 // Referanslar
 app.get('/referanslar', (req, res) => {
   const testimonials = data.getPublishedTestimonials();
   const projects = data.getPublishedProjects();
-  res.render('referanslar', { layout: 'layout', testimonials, projects });
+  const refHeroBg = data.getSetting('ref_hero_bg', '/assets/blog-referans.png');
+  res.render('referanslar', { layout: 'layout', testimonials, projects, refHeroBg });
 });
 
 // Blog index
@@ -395,8 +401,8 @@ app.get('/admin/paketler/duzenle/:id', requireAuth, (req, res) => {
 });
 
 app.post('/admin/paketler/kaydet', requireAuth, (req, res) => {
-  const { id, slug, name, subtitle, price, price_label, features, pricing_json, is_popular, is_published, sort_order } = req.body;
-  const item = { slug, name, subtitle, price: parseInt(price) || 0, price_label, features, pricing_json: pricing_json || '', is_popular: is_popular ? 1 : 0, is_published: is_published ? 1 : 0, sort_order: parseInt(sort_order) || 0 };
+  const { id, slug, name, subtitle, price, price_label, features, pricing_json, is_popular, is_published, sort_order, category } = req.body;
+  const item = { slug, name, subtitle, price: parseInt(price) || 0, price_label, features, pricing_json: pricing_json || '', category: category || 'ekonomik', is_popular: is_popular ? 1 : 0, is_published: is_published ? 1 : 0, sort_order: parseInt(sort_order) || 0 };
   if (id) {
     data.updatePackage(id, item);
   } else {

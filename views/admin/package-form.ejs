@@ -21,18 +21,22 @@
           <input name="subtitle" value="<%= p ? p.subtitle : '' %>" placeholder="4 Kameralı Sistem">
         </div>
         <div>
-          <label>Fiyat (TL)</label>
-          <input type="number" name="price" value="<%= p ? p.price : 0 %>">
+          <label>Kategori</label>
+          <select name="category">
+            <option value="ekonomik" <%= p && p.category === 'ekonomik' ? 'selected' : '' %>>Ekonomik Paketler</option>
+            <option value="premium" <%= p && p.category === 'premium' ? 'selected' : '' %>>Premium Paketler</option>
+            <option value="pro_ip" <%= p && p.category === 'pro_ip' ? 'selected' : '' %>>Pro IP Paketler</option>
+          </select>
         </div>
       </div>
       <div class="row">
         <div>
-          <label>Fiyat Etiketi</label>
-          <input name="price_label" value="<%= p ? p.price_label : 'TL + KDV' %>">
+          <label>Fiyat (TL)</label>
+          <input type="number" name="price" value="<%= p ? p.price : 0 %>">
         </div>
         <div>
-          <label>Sıralama</label>
-          <input type="number" name="sort_order" value="<%= p ? p.sort_order : 0 %>">
+          <label>Fiyat Etiketi</label>
+          <input name="price_label" value="<%= p ? p.price_label : 'TL + KDV' %>">
         </div>
       </div>
       <label>Özellikler (her satıra bir özellik)</label>
