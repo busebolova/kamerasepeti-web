@@ -1,0 +1,5 @@
+Node.js uygulaması. Express.js ile statik dosya sunumu ve form loglama.
+Proje: /Users/busebolova/kamerasepeti-web
+Komut: npm install && npm start
+Port: 3000
+URL: http://localhost:3000

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Telefondan Kamera İzleme: Uzaktan Erişim Rehberi | Kamera Sepeti</title>
+  <meta name="description" content="iPhone ve Android telefonlardan güvenlik kameralarınızı nasıl izleyeceğinizi adım adım öğrenin. P2P, DDNS ve uygulama kurulumu hakkında bilmeniz gereken her şey.">
+  <meta name="robots" content="index, follow"><link rel="canonical" href="https://www.kamerasepeti.com.tr/blog/telefondan-kamera-izleme">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Telefondan Kamera İzleme: Uzaktan Erişim Rehberi | Kamera Sepeti">
+  <meta property="og:description" content="iPhone ve Android ile güvenlik kameralarınızı uzaktan izleme rehberi. P2P, DDNS ve mobil uygulama kurulumu.">
+  <meta property="og:url" content="https://www.kamerasepeti.com.tr/blog/telefondan-kamera-izleme">
+  <meta property="og:image" content="https://www.kamerasepeti.com.tr/assets/mobil-kamera-izleme.webp">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Telefondan Kamera İzleme Rehberi">
+  <meta name="twitter:description" content="iPhone ve Android ile güvenlik kameralarınızı uzaktan izleme rehberi.">
+  <link rel="icon" type="image/png" href="/assets/favicon.png"><link rel="stylesheet" href="/styles.css">
+  <style>
+    .article-hero { background: linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%); padding: 72px 0; color: #fff; }
+    .article-hero h1 { color: #fff; font-size: clamp(34px, 4.5vw, 58px); margin-bottom: 15px; }
+    .article-hero .meta { color: #b7c8de; font-size: 14px; }
+    .article-hero .tag { margin-bottom: 16px; display: inline-block; }
+    .article-body { padding: 60px 0; }
+    .article-body .container { max-width: 780px; }
+    .article-body h2 { font-size: 28px; margin: 40px 0 16px; }
+    .article-body h3 { font-size: 22px; margin: 32px 0 12px; }
+    .article-body p { color: #34445a; margin-bottom: 18px; line-height: 1.8; }
+    .article-body ul, .article-body ol { color: #34445a; margin-bottom: 18px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; line-height: 1.7; }
+    .article-body .highlight-box { background: #f0f6fe; border-left: 4px solid var(--orange); padding: 20px 24px; border-radius: 0 14px 14px 0; margin: 24px 0; }
+    .article-body .highlight-box p { margin-bottom: 0; }
+    .article-body img { width: 100%; border-radius: 16px; margin: 24px 0; }
+    .article-cta { background: var(--soft); padding: 48px 0; text-align: center; }
+    .article-cta h2 { margin-bottom: 12px; }
+    .article-cta p { color: var(--muted); max-width: 560px; margin: 0 auto 24px; }
+    .article-nav { border-top: 1px solid var(--line); padding: 24px 0; margin-top: 48px; display: flex; justify-content: space-between; }
+    @media (max-width: 680px) { .article-nav { flex-direction: column; gap: 12px; } }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://www.kamerasepeti.com.tr/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.kamerasepeti.com.tr/blog"},{"@type":"ListItem","position":3,"name":"Telefondan Kamera İzleme","item":"https://www.kamerasepeti.com.tr/blog/telefondan-kamera-izleme"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Telefondan Kamera İzleme: Uzaktan Erişim Rehberi","description":"iPhone ve Android telefonlardan güvenlik kameralarınızı izleme rehberi.","author":{"@type":"Organization","name":"Kamera Sepeti"},"publisher":{"@type":"Organization","name":"Kamera Sepeti","logo":{"@type":"ImageObject","url":"https://www.kamerasepeti.com.tr/assets/logo-renkli.png"}},"datePublished":"2026-05-12","dateModified":"2026-05-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kamerasepeti.com.tr/blog/telefondan-kamera-izleme"},"image":"https://www.kamerasepeti.com.tr/assets/mobil-kamera-izleme.webp"}
+  </script>
+</head>
+<body>
+  <div class="preloader" aria-hidden="true"><img src="/assets/favicon.png" alt=""></div>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/"><img src="/assets/logo-renkli.png" alt="Kamera Sepeti"></a><nav class="nav-links"><a href="/">Ana Sayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/referanslar">Referanslar</a><a class="active" href="/blog">Blog</a><a href="/iletisim">İletişim</a></nav><a class="nav-phone" href="tel:+905524602020"><span class="phone-icon">☎</span><span>0552 460 20 20<small>WhatsApp Teklif Hattı</small></span></a><button class="menu-toggle" aria-label="Menüyü aç">☰</button></div></header>
+  <main>
+    <section class="article-hero" style="overflow:hidden;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(105deg, rgba(3,29,64,.92) 0%, rgba(6,54,111,.82) 70%, rgba(11,77,148,.7) 100%), url(/assets/mobil-kamera-izleme.webp) center/cover no-repeat"></div><div class="container" style="position:relative;z-index:2">
+        <div class="breadcrumbs" style="color:#b7c8de"><a href="/" style="color:#b7c8de">Ana Sayfa</a> <span style="color:#b7c8de">›</span> <a href="/blog" style="color:#b7c8de">Blog</a> <span style="color:#b7c8de">›</span> Mobil İzleme</div>
+        <span class="tag">Mobil İzleme</span>
+        <h1>Telefonumdan Kameraları Nasıl İzlerim?</h1>
+        <div class="meta">12 Mayıs 2026 · 4 dk okuma · Kamera Sepeti Uzman Ekibi</div>
+      </div>
+    </section>
+    <section class="article-body">
+      <div class="container">
+        <p class="lead" style="font-size:20px;color:#12213a">Güvenlik kameralarınızı telefonunuzdan izlemek, günümüzde neredeyse tüm kamera sistemlerinde standart bir özellik haline geldi. İster iş yerinizde ister evinizde olun, kameralarınıza anında erişerek anlık görüntüleri kontrol edebilirsiniz. Peki bu nasıl çalışır ve nelere dikkat etmelisiniz?</p>
+
+        <h2>Uzaktan Erişim Nasıl Çalışır?</h2>
+        <p>Güvenlik kamerası sistemlerinde uzaktan erişim, kayıt cihazınızın (NVR/DVR) internete bağlanmasıyla mümkün olur. Kayıt cihazı, kendine ait bir IP adresi alır ve bulut veya P2P teknolojisi üzerinden telefon uygulamasıyla iletişim kurar. Kurulumu yapıldıktan sonra tek yapmanız gereken, telefonunuza ilgili uygulamayı indirmek ve kullanıcı bilgilerinizle giriş yapmaktır.</p>
+
+        <div class="highlight-box"><p><strong>Önemli:</strong> Kamera Sepeti olarak kurulumunu yaptığımız tüm sistemlerde uzaktan erişimi sizin için hazır hale getiriyoruz. Telefonunuza uygulamayı indirmeniz ve size verdiğimiz kullanıcı bilgileriyle giriş yapmanız yeterli.</p></div>
+
+        <h2>P2P (Peer-to-Peer) Bağlantı</h2>
+        <p>Günümüzdeki çoğu kayıt cihazı P2P teknolojisini destekler. Bu teknoloji, karmaşık port yönlendirme (port forwarding) ayarlarına gerek kalmadan, kameralarınıza internet üzerinden güvenli bir şekilde bağlanmanızı sağlar. Her kayıt cihazına özel bir P2P kimlik numarası (UID/SN) atanır ve bu numarayı telefona kurduğunuz uygulamaya girerek bağlantıyı kurabilirsiniz.</p>
+
+        <h2>Hangi Uygulamalar Kullanılır?</h2>
+        <p>Kullandığınız kayıt cihazının markasına göre uygulama değişir. En yaygın kullanılan uygulamalar şunlardır:</p>
+        <ul>
+          <li><strong>DMSS / DM Pro:</strong> Dahua marka cihazlar için resmi mobil uygulama.</li>
+          <li><strong>Hik-Connect / iVMS:</strong> Hikvision marka cihazlar için resmi uygulama.</li>
+          <li><strong>EseeCloud / XMEye:</strong> Çoğu Çin menşeli markada kullanılan ortak uygulama.</li>
+          <li><strong>Tuya Smart / Smart Life:</strong> IP kameralar için yaygın bulut tabanlı uygulama.</li>
+        </ul>
+        <p>Hangi uygulamayı kullanmanız gerektiğini kurulum sırasında size bildiriyor ve gerekli kurulumu yapıyoruz.</p>
+
+        <h2>Güvenli Uzaktan Erişim İçin İpuçları</h2>
+        <p>Uzaktan erişim büyük kolaylık olsa da, güvenlik açısından bazı önlemler almak önemlidir. İşte dikkat etmeniz gerekenler:</p>
+        <ul>
+          <li><strong>Varsayılan şifreyi değiştirin:</strong> Kayıt cihazınızın varsayılan kullanıcı adı ve şifresini mutlaka değiştirin. Çoğu güvenlik ihlali, değiştirilmemiş varsayılan şifreler nedeniyle oluşur.</li>
+          <li><strong>Güçlü şifre kullanın:</strong> Harf, rakam ve sembol içeren en az 8 karakterli bir şifre belirleyin. Doğum tarihi, 123456 gibi basit şifrelerden kaçının.</li>
+          <li><strong>Yazılım güncellemelerini ihmal etmeyin:</strong> Kayıt cihazınızın ve kameralarınızın yazılımını güncel tutun. Üreticiler güvenlik açıklarını kapatmak için düzenli güncelleme yayınlar.</li>
+          <li><strong>İki faktörlü doğrulama:</strong> Destekleyen cihazlarda iki faktörlü doğrulamayı etkinleştirin.</li>
+        </ul>
+
+        <h2>Wi-Fi İp Kameralarda Dikkat Edilmesi Gerekenler</h2>
+        <p>Wi-Fi kameralar, kablolu kameralara göre daha kolay kurulur ancak bazı dezavantajları vardır. Wi-Fi sinyalinin zayıf olduğu noktalarda görüntü donabilir veya bağlantı kopabilir. Ayrıca Wi-Fi kameralar, evinizdeki internet bant genişliğini paylaşır. Çok sayıda Wi-Fi kamera kullanıyorsanız internet hızınızı kontrol etmeniz gerekebilir. Bu nedenle mümkün olduğunca kablolu bağlantı tercih etmenizi öneririz.</p>
+
+        <div class="article-nav">
+          <a class="text-link" href="/blog/ev-icin-en-iyi-kamera-sistemi">← Önceki: Ev İçin Kamera Sistemi</a>
+          <a class="text-link" href="/blog/gece-goruslu-kamera">Sonraki: Gece Görüşlü Kamera →</a>
+        </div>
+      </div>
+    </section>
+    <section class="article-cta">
+      <div class="container">
+        <h2>Mobil İzleme Desteği</h2>
+        <p>Kamera sisteminizin telefon uygulaması kurulumu ve uzaktan erişim ayarları için destek alın.</p>
+        <a class="btn btn-green" href="https://wa.me/905524602020?text=Merhaba,%20telefondan%20kamera%20izleme%20hakk%C4%B1nda%20yard%C4%B1m%20almak%20istiyorum.">WhatsApp'tan Destek Al →</a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div><img class="footer-logo" src="/assets/logo-beyaz.png" alt="Kamera Sepeti"><p>Profesyonel güvenlik kamerası çözümleri.</p></div><div><h3>Menü</h3><div class="footer-links"><a href="/">Ana Sayfa</a><a href="/paketler">Paketler</a><a href="/referanslar">Referanslar</a></div></div><div><h3>İçerik</h3><div class="footer-links"><a href="/blog">Blog</a><a href="/iletisim">İletişim</a></div></div><div><h3>Teklif Hattı</h3><a href="tel:+905524602020">0552 460 20 20</a></div></div><div class="footer-bottom">© 2026 Kamera Sepeti</div></div></footer>
+  <a class="floating-whatsapp" href="https://wa.me/905524602020" aria-label="WhatsApp'tan yaz">◉</a><script src="/app.js"></script>
+</body>
+</html>
