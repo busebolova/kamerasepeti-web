@@ -7,7 +7,7 @@
   <meta name="description" content="<%= typeof metaDesc !== 'undefined' ? metaDesc : 'Profesyonel güvenlik kamerası çözümleri.' %>">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="<%= favicon %>">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/styles.css">
   <%- typeof headExtra !== 'undefined' ? headExtra : '' %>
 </head>
 <body>
@@ -17,6 +17,6 @@
   </main>
   <%- include('partials/footer') %>
   <a class="floating-whatsapp" href="<%= whatsappUrl %>" aria-label="WhatsApp'tan yaz">◉</a>
-  <script src="/app.js"></script>
+  <script src="/assets/app.js"></script>
 </body>
 </html>
