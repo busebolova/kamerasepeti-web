@@ -4,6 +4,7 @@ const fs = require('fs');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
+const expressLayouts = require('express-ejs-layouts');
 const { initDb, getDb } = require('./lib/db');
 const data = require('./lib/data');
 const { hashPassword, checkPassword, requireAuth } = require('./lib/auth');
@@ -53,6 +54,8 @@ app.use(express.static(STATIC_ROOT, { index: false, redirect: false }));
 // EJS setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayouts);
+app.set('layout', 'layout');
 
 // ─── Global template vars ───
 app.use(async (req, res, next) => {
@@ -92,53 +95,53 @@ app.get('/', (req, res) => {
   const heroTitle = data.getSetting('hero_title');
   const heroDesc = data.getSetting('hero_desc');
   const heroBg = data.getSetting('hero_bg', '/assets/hero-kurulum-v2.webp');
-  res.render('index', { services, steps, trustItems, heroTitle, heroDesc, heroBg });
+  res.render('index', { layout: 'layout', services, steps, trustItems, heroTitle, heroDesc, heroBg });
 });
 
 // Packages
 app.get('/paketler', (req, res) => {
   const packages = data.getAllPackages();
   const faq = JSON.parse(data.getSetting('paketler_faq', '[]'));
-  res.render('paketler', { packages, faq });
+  res.render('paketler', { layout: 'layout', packages, faq });
 });
 
 // Hakkimizda
 app.get('/hakkimizda', (req, res) => {
   const page = data.getPage('hakkimizda');
-  res.render('hakkimizda', { page });
+  res.render('hakkimizda', { layout: 'layout', page });
 });
 
 // Referanslar
 app.get('/referanslar', (req, res) => {
   const testimonials = data.getPublishedTestimonials();
   const projects = data.getPublishedProjects();
-  res.render('referanslar', { testimonials, projects });
+  res.render('referanslar', { layout: 'layout', testimonials, projects });
 });
 
 // Blog index
 app.get('/blog', (req, res) => {
   const posts = data.getPublishedBlogPosts();
   const categories = data.getBlogCategories();
-  res.render('blog/index', { posts, categories });
+  res.render('blog/index', { layout: 'layout', posts, categories });
 });
 
 // Blog single
 app.get('/blog/:slug', (req, res) => {
   const post = data.getBlogPost(req.params.slug);
-  if (!post) return res.status(404).render('404');
+  if (!post) return res.status(404).render('404', { layout: 'layout' });
   const { prev, next } = data.getAdjacentBlogPosts(req.params.slug);
-  res.render('blog/post', { post, prev, next });
+  res.render('blog/post', { layout: 'layout', post, prev, next });
 });
 
 // Iletisim
 app.get('/iletisim', (req, res) => {
-  res.render('iletisim');
+  res.render('iletisim', { layout: 'layout' });
 });
 
 // KVKK
 app.get('/kvkk', (req, res) => {
   const page = data.getPage('kvkk');
-  res.render('kvkk', { page });
+  res.render('kvkk', { layout: 'layout', page });
 });
 
 // ─── API Routes ───
@@ -153,7 +156,7 @@ app.post('/api/teklif', (req, res) => {
 // ─── Admin Auth Routes ───
 app.get('/admin/login', (req, res) => {
   if (req.session.admin) return res.redirect('/admin');
-  res.render('admin/login');
+  res.render('admin/login', { layout: false });
 });
 
 app.post('/admin/login', (req, res) => {
@@ -164,7 +167,7 @@ app.post('/admin/login', (req, res) => {
     req.session.admin = { id: user.id, username: user.username };
     return res.redirect('/admin');
   }
-  res.render('admin/login', { error: 'Hatalı kullanıcı adı veya şifre' });
+  res.render('admin/login', { layout: false, error: 'Hatalı kullanıcı adı veya şifre' });
 });
 
 app.get('/admin/logout', (req, res) => {
@@ -178,13 +181,13 @@ app.get('/admin', requireAuth, (req, res) => {
   const testimonialCount = db.prepare('SELECT COUNT(*) as c FROM testimonials').get().c;
   const projectCount = db.prepare('SELECT COUNT(*) as c FROM projects').get().c;
   const mediaCount = db.prepare('SELECT COUNT(*) as c FROM media').get().c;
-  res.render('admin/dashboard', { postCount, testimonialCount, projectCount, mediaCount });
+  res.render('admin/dashboard', { layout: 'admin/layout', postCount, testimonialCount, projectCount, mediaCount });
 });
 
 // ─── Admin: Settings ───
 app.get('/admin/ayarlar', requireAuth, (req, res) => {
   const allSettings = data.getAllSettings();
-  res.render('admin/ayarlar', { settings: allSettings });
+  res.render('admin/ayarlar', { layout: 'admin/layout', settings: allSettings });
 });
 
 app.post('/admin/ayarlar', requireAuth, (req, res) => {
@@ -197,17 +200,17 @@ app.post('/admin/ayarlar', requireAuth, (req, res) => {
 // ─── Admin: Blog ───
 app.get('/admin/blog', requireAuth, (req, res) => {
   const posts = data.getAllBlogPosts();
-  res.render('admin/blog-list', { posts });
+  res.render('admin/blog-list', { layout: 'admin/layout', posts });
 });
 
 app.get('/admin/blog/yeni', requireAuth, (req, res) => {
-  res.render('admin/blog-form', { post: null });
+  res.render('admin/blog-form', { layout: 'admin/layout', post: null });
 });
 
 app.get('/admin/blog/duzenle/:id', requireAuth, (req, res) => {
   const post = data.getBlogPostById(req.params.id);
   if (!post) return res.redirect('/admin/blog');
-  res.render('admin/blog-form', { post });
+  res.render('admin/blog-form', { layout: 'admin/layout', post });
 });
 
 app.post('/admin/blog/kaydet', requireAuth, (req, res) => {
@@ -229,17 +232,17 @@ app.post('/admin/blog/sil/:id', requireAuth, (req, res) => {
 // ─── Admin: Testimonials ───
 app.get('/admin/referanslar', requireAuth, (req, res) => {
   const testimonials = data.getAllTestimonials();
-  res.render('admin/testimonial-list', { testimonials });
+  res.render('admin/testimonial-list', { layout: 'admin/layout', testimonials });
 });
 
 app.get('/admin/referanslar/yeni', requireAuth, (req, res) => {
-  res.render('admin/testimonial-form', { t: null });
+  res.render('admin/testimonial-form', { layout: 'admin/layout', t: null });
 });
 
 app.get('/admin/referanslar/duzenle/:id', requireAuth, (req, res) => {
   const t = data.getTestimonial(req.params.id);
   if (!t) return res.redirect('/admin/referanslar');
-  res.render('admin/testimonial-form', { t });
+  res.render('admin/testimonial-form', { layout: 'admin/layout', t });
 });
 
 app.post('/admin/referanslar/kaydet', requireAuth, (req, res) => {
@@ -261,17 +264,17 @@ app.post('/admin/referanslar/sil/:id', requireAuth, (req, res) => {
 // ─── Admin: Projects ───
 app.get('/admin/projeler', requireAuth, (req, res) => {
   const projects = data.getAllProjects();
-  res.render('admin/project-list', { projects });
+  res.render('admin/project-list', { layout: 'admin/layout', projects });
 });
 
 app.get('/admin/projeler/yeni', requireAuth, (req, res) => {
-  res.render('admin/project-form', { p: null });
+  res.render('admin/project-form', { layout: 'admin/layout', p: null });
 });
 
 app.get('/admin/projeler/duzenle/:id', requireAuth, (req, res) => {
   const p = data.getProject(req.params.id);
   if (!p) return res.redirect('/admin/projeler');
-  res.render('admin/project-form', { p });
+  res.render('admin/project-form', { layout: 'admin/layout', p });
 });
 
 app.post('/admin/projeler/kaydet', requireAuth, (req, res) => {
@@ -294,7 +297,7 @@ app.post('/admin/projeler/sil/:id', requireAuth, (req, res) => {
 app.get('/admin/menu', requireAuth, (req, res) => {
   const navItems = data.getNavItems();
   const allNav = getDb().prepare('SELECT * FROM nav_items ORDER BY sort_order ASC').all();
-  res.render('admin/menu', { navItems, allNav });
+  res.render('admin/menu', { layout: 'admin/layout', navItems, allNav });
 });
 
 app.post('/admin/menu/kaydet', requireAuth, (req, res) => {
@@ -320,7 +323,7 @@ app.get('/admin/footer', requireAuth, (req, res) => {
   for (const s of sections) {
     sectionLinks[s.id] = data.getFooterLinks(s.id);
   }
-  res.render('admin/footer', { sections, sectionLinks });
+  res.render('admin/footer', { layout: 'admin/layout', sections, sectionLinks });
 });
 
 app.post('/admin/footer/section/kaydet', requireAuth, (req, res) => {
@@ -356,7 +359,7 @@ app.post('/admin/footer/link/sil/:id', requireAuth, (req, res) => {
 // ─── Admin: İletişim ───
 app.get('/admin/iletisim', requireAuth, (req, res) => {
   const info = data.getContactInfo();
-  res.render('admin/contact', { info });
+  res.render('admin/contact', { layout: 'admin/layout', info });
 });
 
 app.post('/admin/iletisim/kaydet', requireAuth, (req, res) => {
@@ -378,17 +381,17 @@ app.post('/admin/iletisim/sil/:id', requireAuth, (req, res) => {
 // ─── Admin: Packages ───
 app.get('/admin/paketler', requireAuth, (req, res) => {
   const packages = getDb().prepare('SELECT * FROM packages ORDER BY sort_order ASC').all();
-  res.render('admin/package-list', { packages });
+  res.render('admin/package-list', { layout: 'admin/layout', packages });
 });
 
 app.get('/admin/paketler/yeni', requireAuth, (req, res) => {
-  res.render('admin/package-form', { p: null });
+  res.render('admin/package-form', { layout: 'admin/layout', p: null });
 });
 
 app.get('/admin/paketler/duzenle/:id', requireAuth, (req, res) => {
   const p = getDb().prepare('SELECT * FROM packages WHERE id = ?').get(req.params.id);
   if (!p) return res.redirect('/admin/paketler');
-  res.render('admin/package-form', { p });
+  res.render('admin/package-form', { layout: 'admin/layout', p });
 });
 
 app.post('/admin/paketler/kaydet', requireAuth, (req, res) => {
@@ -416,7 +419,7 @@ const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } });
 
 app.get('/admin/medya', requireAuth, (req, res) => {
   const media = data.getAllMedia();
-  res.render('admin/media', { media });
+  res.render('admin/media', { layout: 'admin/layout', media });
 });
 
 app.post('/admin/medya/yukle', requireAuth, upload.single('file'), (req, res) => {
@@ -443,7 +446,7 @@ app.post('/admin/medya/sil/:id', requireAuth, (req, res) => {
 // ─── 404 ───
 app.use((req, res) => {
   if (req.path.startsWith('/admin/')) return res.redirect('/admin/login');
-  res.status(404).render('404');
+  res.status(404).render('404', { layout: 'layout' });
 });
 
 // ─── Export for Vercel ───

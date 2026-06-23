@@ -1,20 +1,3 @@
-  <div class="preloader" aria-hidden="true"><img src="<%= favicon %>" alt=""></div>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="/"><img src="<%= logoDark %>" alt="<%= siteName %>"></a>
-      <nav class="nav-links">
-        <% navItems.forEach(function(item) { %>
-          <a href="<%= item.url %>" <%= currentPath === item.url ? 'class="active"' : '' %>><%= item.label %></a>
-        <% }) %>
-      </nav>
-      <a class="nav-phone" href="tel:<%= sitePhone.replace(/[^0-9]/g, '') %>">
-        <span class="phone-icon">☎</span>
-        <span><%= sitePhone %><small>WhatsApp Teklif Hattı</small></span>
-      </a>
-      <button class="menu-toggle" aria-label="Menüyü aç">☰</button>
-    </div>
-  </header>
-  <main>
     <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%)">
       <div class="container">
         <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Paketler</div>
@@ -67,4 +50,3 @@
         <% } %>
       </div>
     </section>
-  </main>
