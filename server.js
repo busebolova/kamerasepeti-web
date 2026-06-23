@@ -4,21 +4,35 @@ const fs = require('fs');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const { initDb, getDb, closeDb } = require('./lib/db');
+const { initDb, getDb } = require('./lib/db');
 const data = require('./lib/data');
 const { hashPassword, checkPassword, requireAuth } = require('./lib/auth');
 const { seedIfEmpty } = require('./lib/seed');
 
-// ─── Init ───
-async function start() {
-  await initDb();
-  if (typeof seedIfEmpty === 'function') seedIfEmpty();
-
-  const app = express();
-  const PORT = process.env.PORT || 3000;
-
-// ─── Settings ───
+const app = express();
+const PORT = process.env.PORT || 3000;
 const STATIC_ROOT = __dirname;
+
+// ─── Lazy DB init middleware ───
+// Ensures DB + seed run before any route that needs them
+let dbInitPromise = null;
+app.use(async (req, res, next) => {
+  if (!getDb()) {
+    if (!dbInitPromise) {
+      dbInitPromise = (async () => {
+        await initDb();
+        if (typeof seedIfEmpty === 'function') seedIfEmpty();
+      })();
+    }
+    try {
+      await dbInitPromise;
+    } catch (err) {
+      console.error('DB init failed:', err);
+      return res.status(500).send('Database initialization failed');
+    }
+  }
+  next();
+});
 
 // ─── Middleware ───
 app.use(express.json({ limit: '10mb' }));
@@ -432,11 +446,17 @@ app.use((req, res) => {
   res.status(404).render('404');
 });
 
-// ─── Start ───
-app.listen(PORT, () => console.log(`Kamera Sepeti -> http://localhost:${PORT}`));
-}
+// ─── Export for Vercel ───
+module.exports = app;
 
-start().catch(err => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+// ─── Local dev ───
+if (require.main === module) {
+  (async () => {
+    await initDb();
+    if (typeof seedIfEmpty === 'function') seedIfEmpty();
+    app.listen(PORT, () => console.log(`Kamera Sepeti -> http://localhost:${PORT}`));
+  })().catch(err => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  });
+}
