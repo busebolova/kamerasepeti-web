@@ -7,11 +7,15 @@ const multer = require('multer');
 const { initDb, getDb, closeDb } = require('./lib/db');
 const data = require('./lib/data');
 const { hashPassword, checkPassword, requireAuth } = require('./lib/auth');
+const { seedIfEmpty } = require('./lib/seed');
 
 // ─── Init ───
-initDb();
-const app = express();
-const PORT = process.env.PORT || 3000;
+async function start() {
+  await initDb();
+  if (typeof seedIfEmpty === 'function') seedIfEmpty();
+
+  const app = express();
+  const PORT = process.env.PORT || 3000;
 
 // ─── Settings ───
 const STATIC_ROOT = __dirname;
@@ -430,3 +434,9 @@ app.use((req, res) => {
 
 // ─── Start ───
 app.listen(PORT, () => console.log(`Kamera Sepeti -> http://localhost:${PORT}`));
+}
+
+start().catch(err => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
+});
