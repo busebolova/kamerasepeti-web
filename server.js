@@ -148,6 +148,11 @@ app.get('/iletisim', (req, res) => {
   res.render('iletisim', { layout: 'layout' });
 });
 
+// Hizmetlerimiz
+app.get('/hizmetlerimiz', (req, res) => {
+  res.sendFile(path.join(__dirname, 'hizmetlerimiz', 'index.html'));
+});
+
 // KVKK
 app.get('/kvkk', (req, res) => {
   const page = data.getPage('kvkk');
