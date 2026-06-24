@@ -76,6 +76,8 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   transition: .25s;
 }
 .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-icon { display: none; }
+.nav-text-short { display: none; }
 .nav-phone { display: flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 800; white-space: nowrap; }
 .nav-phone small { display: block; color: var(--muted); font-weight: 600; font-size: 12px; }
 .phone-icon { width: 43px; height: 43px; display: grid; place-items: center; border: 2px solid var(--navy); border-radius: 50%; }
@@ -299,6 +301,191 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   repeating-linear-gradient(35deg, #dce8e4 0 3px, #edf3f4 3px 32px); border: 1px solid var(--line);
 }
 
+.refs-hero {
+  position: relative;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: #021b3b;
+}
+.refs-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2,18,41,.98) 0%, rgba(2,18,41,.82) 50%, rgba(2,18,41,.18) 100%),
+    url("/assets/ev-kamera-sistemi.webp") center 42%/cover no-repeat;
+}
+.refs-hero .container { position: relative; z-index: 2; }
+.refs-hero h1 { color: #fff; font-size: clamp(42px, 5vw, 62px); margin-bottom: 12px; }
+.refs-hero p { max-width: 620px; color: #edf4ff; font-size: 20px; margin: 0; }
+.refs-page { background: #fff; }
+.refs-title { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
+.refs-title-space { margin-top: 34px; }
+.refs-title.compact { margin: 0; }
+.refs-title-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+  font-weight: 900;
+}
+.refs-title h2 { margin: 0 0 4px; font-size: clamp(25px, 3vw, 32px); text-transform: uppercase; }
+.refs-title p { margin: 0; color: var(--muted); font-weight: 650; }
+.refs-project-types {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.refs-project-types article {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(12,39,80,.07);
+}
+.refs-project-types img { width: 100%; height: 180px; object-fit: cover; }
+.refs-project-types div { padding: 18px 16px 20px; display: grid; grid-template-columns: 34px 1fr; gap: 1px 10px; align-items: center; }
+.refs-project-types span { grid-row: span 2; color: var(--navy); font-size: 30px; line-height: 1; }
+.refs-project-types strong { color: var(--navy); font-size: 18px; text-transform: uppercase; line-height: 1.1; }
+.refs-project-types small { color: #26364f; font-weight: 700; }
+.refs-brands {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(12,39,80,.05);
+}
+.brand-logo {
+  min-height: 94px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 16px 12px;
+  color: var(--orange);
+  border-right: 1px solid var(--line);
+  font-size: clamp(18px, 2.3vw, 30px);
+  font-weight: 950;
+  letter-spacing: -.04em;
+}
+.brand-logo:last-child { border-right: 0; }
+.brand-logo small { display: block; color: var(--orange); font-size: 9px; letter-spacing: .08em; line-height: 1; }
+.brand-logo.dahua { font-style: italic; }
+.brand-logo.tplink { letter-spacing: -.06em; }
+.brand-logo.nexans { font-weight: 700; font-style: italic; }
+.refs-before-after {
+  display: grid;
+  grid-template-columns: .72fr 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-top: 38px;
+}
+.before-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(12,39,80,.06);
+}
+.before-card > span {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  top: 12px;
+  padding: 6px 11px;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.badge-red { background: #df2e2e; }
+.badge-green { background: #17a846; }
+.before-visual {
+  height: 210px;
+  background-size: cover;
+  background-position: center;
+}
+.before-bad {
+  background:
+    linear-gradient(135deg, rgba(20,28,42,.18), rgba(20,28,42,.08)),
+    repeating-linear-gradient(26deg, transparent 0 16px, rgba(2,27,59,.28) 17px 20px),
+    linear-gradient(135deg, #d8d2c9, #ece6dd);
+}
+.before-good { background: url("/assets/service-technical.webp") center/cover no-repeat; filter: grayscale(.2); }
+.before-card p { margin: 0; padding: 14px 18px; color: #26364f; font-weight: 800; }
+.before-card p b { color: var(--green); margin-right: 8px; }
+.before-card:first-of-type p b { color: #df2e2e; }
+.refs-testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.refs-testimonials article {
+  position: relative;
+  min-height: 164px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 24px 24px 22px;
+  box-shadow: 0 8px 24px rgba(12,39,80,.05);
+}
+.quote-mark { position: absolute; left: 22px; top: 12px; color: #edf1f7; font-size: 72px; line-height: 1; font-weight: 900; }
+.stars { position: relative; z-index: 1; color: #ffc107; letter-spacing: 1px; margin-bottom: 10px; }
+.refs-testimonials p { position: relative; z-index: 1; color: #1d2f4b; font-weight: 700; }
+.person { display: grid; justify-items: center; gap: 2px; color: var(--navy); }
+.person span { width: 42px; height: 42px; display: grid; place-items: center; color: #fff; background: var(--navy); border-radius: 50%; font-weight: 900; }
+.person small { color: #2f405a; font-weight: 650; }
+.refs-trust-row { display: grid; grid-template-columns: .68fr 1fr; gap: 28px; margin-top: 28px; }
+.refs-istanbul,
+.refs-why {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(12,39,80,.05);
+}
+.refs-istanbul { position: relative; overflow: hidden; padding: 32px 34px 42px; min-height: 230px; }
+.refs-istanbul span { color: var(--navy); font-size: 42px; }
+.refs-istanbul h2 { text-transform: uppercase; font-size: 28px; }
+.refs-istanbul p { color: #26364f; font-weight: 650; max-width: 430px; }
+.refs-istanbul em {
+  position: absolute;
+  right: 28px;
+  bottom: 10px;
+  color: #3f88be;
+  font-family: Georgia, serif;
+  font-size: 52px;
+}
+.refs-why { padding: 26px 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.refs-why h2 { grid-column: 1 / -1; text-transform: uppercase; font-size: 26px; margin-bottom: 12px; }
+.refs-why div { padding: 16px 14px; border: 1px solid var(--line); display: grid; grid-template-columns: 34px 1fr; gap: 1px 10px; }
+.refs-why span { grid-row: span 2; color: var(--navy); font-size: 24px; }
+.refs-why strong { color: var(--navy); text-transform: uppercase; font-size: 13px; }
+.refs-why small { color: #34445a; font-weight: 650; }
+.refs-cta {
+  display: grid;
+  grid-template-columns: 1.1fr auto .32fr;
+  gap: 28px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 34px 38px;
+  color: #fff;
+  background: #021b3b;
+  border-radius: 12px;
+}
+.refs-cta h2 { color: #fff; text-transform: uppercase; font-size: clamp(26px, 3vw, 34px); margin-bottom: 8px; }
+.refs-cta p { color: #d6e1ef; margin: 0; }
+.refs-cta span { float: left; margin-right: 20px; color: var(--orange); font-size: 54px; line-height: 1; }
+.refs-cta .btn { border-radius: 8px; min-width: 310px; }
+.refs-cta-contact { display: grid; gap: 4px; font-weight: 900; }
+.refs-cta-contact small { color: #c9d6e7; font-weight: 650; }
+
 .site-footer { color: #c9d6e7; background: #021a38; padding: 66px 0 24px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 38px; }
 .footer-logo { width: 265px; height: 64px; object-fit: contain; object-position: left; margin-bottom: 20px; }
@@ -321,37 +508,111 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 }
 
 @media (max-width: 1100px) {
-  .site-header { display: none; }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid rgba(230,235,242,.9);
+    backdrop-filter: none;
+  }
+  .nav { min-height: 72px; justify-content: center; gap: 0; }
+  .brand {
+    display: block;
+    width: 210px;
+    margin-inline: auto;
+    flex: 0 0 auto;
+  }
+  .brand img { height: 54px; object-fit: contain; }
   .nav-phone { display: none; }
   .menu-toggle { display: none; }
   .nav-links {
-    position: fixed; z-index: 100; left: 12px; right: 12px; bottom: 12px; top: auto;
-    display: grid; grid-template-columns: repeat(6, 1fr); align-items: center; gap: 2px;
-    margin: 0; padding: 8px 6px; background: rgba(2,27,59,.97); border: 1px solid rgba(255,255,255,.13);
-    border-radius: 20px; box-shadow: 0 16px 44px rgba(2,27,59,.38); backdrop-filter: blur(16px);
+    position: fixed !important;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto !important;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    width: 100%;
+    padding: 8px max(6px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+    background: rgba(255,255,255,.98);
+    border: 0;
+    border-top: 1px solid rgba(6,46,99,.12);
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -12px 34px rgba(2,27,59,.16);
+    backdrop-filter: blur(14px);
   }
   .nav-links a {
-    min-width: 0; padding: 8px 2px 6px; border-radius: 12px; color: rgba(214,226,240,.65);
-    font-size: 10px; line-height: 1.1; text-align: center;
+    min-width: 0;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 5px;
+    min-height: 58px;
+    padding: 7px 1px 6px;
+    border-radius: 16px;
+    color: rgba(6,46,99,.66);
+    font-size: clamp(9px, 2.55vw, 10.5px);
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-left: 0 !important;
   }
-  .nav-links a::before { display: block; margin-bottom: 3px; color: rgba(255,255,255,.55); font-size: 16px; line-height: 1; }
-  .nav-links a[href="/"]::before { content: "⌂"; }
-  .nav-links a[href="/hizmetlerimiz"]::before { content: "⚙"; }
-  .nav-links a[href="/hakkimizda"]::before { content: "ℹ"; }
-  .nav-links a[href="/referanslar"]::before { content: "♢"; }
-  .nav-links a[href="/blog"]::before { content: "▤"; }
-  .nav-links a[href="/iletisim"]::before { content: "☎"; }
-  .nav-links a[href="../"]::before { content: "⌂"; }
-  .nav-links a[href="../hizmetlerimiz/"]::before { content: "⚙"; }
-  .nav-links a[href="../hakkimizda/"]::before { content: "ℹ"; }
-  .nav-links a[href="../referanslar/"]::before { content: "♢"; }
-  .nav-links a[href="../blog/"]::before { content: "▤"; }
-  .nav-links a[href="../iletisim/"]::before { content: "☎"; }
+  .nav-text-full { display: none; }
+  .nav-text-short { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .nav-icon {
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    color: currentColor;
+  }
+  .nav-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .nav-links a::before {
+    display: none !important;
+    content: none !important;
+  }
+  .nav-links a[href="/"]::before { content: none; }
+  .nav-links a[href="/paketler"]::before { content: none; }
+  .nav-links a[href="/hizmetlerimiz"]::before { content: none; }
+  .nav-links a[href="/hakkimizda"]::before { content: none; }
+  .nav-links a[href="/referanslar"]::before { content: none; }
+  .nav-links a[href="/blog"]::before { content: none; }
+  .nav-links a[href="/iletisim"]::before { content: none; }
+  .nav-links a[href="../"]::before { content: none; }
+  .nav-links a[href="../paketler/"]::before { content: none; }
+  .nav-links a[href="../hizmetlerimiz/"]::before { content: none; }
+  .nav-links a[href="../hakkimizda/"]::before { content: none; }
+  .nav-links a[href="../referanslar/"]::before { content: none; }
+  .nav-links a[href="../blog/"]::before { content: none; }
+  .nav-links a[href="../iletisim/"]::before { content: none; }
+  .nav-links a.active {
+    color: var(--orange);
+    background: #fff3ed;
+    box-shadow: none;
+    font-weight: 500;
+  }
+  .nav-links a.active .nav-icon {
+    color: var(--orange);
+  }
+  .nav-links a.active::before { display: none !important; content: none !important; }
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .floating-whatsapp { bottom: calc(92px + env(safe-area-inset-bottom)); }
   .nav-links a::after { display: none; }
-  .nav-links a.active { color: #fff; background: var(--orange); }
-  .nav-links a.active::before { color: #fff; }
-  body { padding-bottom: 96px; }
-  .floating-whatsapp { bottom: 106px; }
   .hero { min-height: auto; }
   .hero-grid, .split, .contact-layout { grid-template-columns: 1fr; }
   .about-intro, .about-work, .about-service-grid, .about-bottom-cta .container { grid-template-columns: 1fr; }
@@ -368,6 +629,14 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .blog-layout { grid-template-columns: 1fr; }
   .sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .refs-project-types { grid-template-columns: repeat(2, 1fr); }
+  .refs-project-types article:last-child { grid-column: 1 / -1; }
+  .refs-brands { grid-template-columns: repeat(3, 1fr); }
+  .brand-logo { border-bottom: 1px solid var(--line); }
+  .refs-before-after, .refs-trust-row, .refs-cta { grid-template-columns: 1fr; }
+  .refs-testimonials { grid-template-columns: 1fr; }
+  .refs-why { grid-template-columns: 1fr 1fr; }
+  .refs-cta .btn { min-width: 0; width: 100%; }
 }
 
 @media (max-width: 680px) {
@@ -402,4 +671,46 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .whatsapp-box { display: block; }
   .whatsapp-box .btn { width: 100%; margin-top: 18px; }
   .footer-bottom { display: block; }
+  .refs-hero { min-height: 300px; align-items: end; padding: 120px 0 38px; }
+  .refs-hero::before {
+    background:
+      linear-gradient(0deg, rgba(2,18,41,.98) 0%, rgba(2,18,41,.75) 48%, rgba(2,18,41,.24) 100%),
+      url("/assets/ev-kamera-sistemi.webp") 68% top/auto 290px no-repeat;
+  }
+  .refs-hero p { font-size: 16px; }
+  .refs-title { gap: 12px; }
+  .refs-title-icon { width: 38px; height: 38px; }
+  .refs-title h2 { font-size: 22px; }
+  .refs-project-types { grid-template-columns: 1fr; }
+  .refs-project-types article:last-child { grid-column: auto; }
+  .refs-project-types img { height: 175px; }
+  .refs-brands { grid-template-columns: repeat(2, 1fr); }
+  .brand-logo { min-height: 78px; font-size: 20px; }
+  .before-visual { height: 170px; }
+  .refs-why { grid-template-columns: 1fr; }
+  .refs-istanbul { padding: 26px 24px 76px; }
+  .refs-istanbul h2 { font-size: 23px; }
+  .refs-istanbul em { font-size: 42px; }
+  .refs-cta { padding: 28px 22px; }
+  .refs-cta span { font-size: 42px; margin-right: 14px; }
+}
+
+/* Mobil alt menü son katman: masaüstünü etkilemeden her mobil genişlikte menüyü alta kilitler. */
+@media (max-width: 1100px) {
+  html body .site-header .nav-links {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+
+  html body .site-header .brand {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
