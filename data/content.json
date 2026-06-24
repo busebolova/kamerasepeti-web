@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-23T22:11:02.093Z",
+  "exported_at": "2026-06-23T22:41:37.841Z",
   "settings": [
     {
       "key": "site_name",
@@ -315,56 +315,56 @@
   "footer_links": [
     {
       "id": 1,
-      "section_id": 0,
+      "section_id": 1,
       "label": "Ana Sayfa",
       "url": "/",
       "sort_order": 0
     },
     {
       "id": 2,
-      "section_id": 0,
+      "section_id": 1,
       "label": "Paketler",
       "url": "/paketler",
       "sort_order": 0
     },
     {
       "id": 3,
-      "section_id": 0,
+      "section_id": 1,
       "label": "Referanslar",
       "url": "/referanslar",
       "sort_order": 0
     },
     {
       "id": 4,
-      "section_id": 0,
+      "section_id": 2,
       "label": "Blog",
       "url": "/blog",
       "sort_order": 0
     },
     {
       "id": 5,
-      "section_id": 0,
+      "section_id": 2,
       "label": "İletişim",
       "url": "/iletisim",
       "sort_order": 0
     },
     {
       "id": 6,
-      "section_id": 0,
+      "section_id": 2,
       "label": "KVKK",
       "url": "/kvkk",
       "sort_order": 0
     },
     {
       "id": 7,
-      "section_id": 0,
+      "section_id": 3,
       "label": "0552 460 20 20",
       "url": "tel:05524602020",
       "sort_order": 0
     },
     {
       "id": 8,
-      "section_id": 0,
+      "section_id": 3,
       "label": "WhatsApp",
       "url": "https://wa.me/905524602020",
       "sort_order": 0

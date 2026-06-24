@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const multer = require('multer');
 const expressLayouts = require('express-ejs-layouts');
 const { initDb, getDb } = require('./lib/db');
@@ -39,12 +38,12 @@ app.use(async (req, res, next) => {
 // ─── Middleware ───
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cookieParser());
-app.use(session({
+app.use(cookieSession({
+  name: 'session',
   secret: process.env.SESSION_SECRET || 'kamerasepeti-secret-key-2026',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 24 * 60 * 60 * 1000 } // 24h
+  maxAge: 24 * 60 * 60 * 1000, // 24h
+  sameSite: 'lax',
+  httpOnly: true
 }));
 
 // Static files — assets, uploads, css, js at root
@@ -102,8 +101,12 @@ app.get('/', (req, res) => {
 // Packages
 app.get('/paketler', (req, res) => {
   const allPackages = data.getAllPackages();
-  const packages = { ekonomik: [], premium: [], pro_ip: [] };
-  allPackages.forEach(p => { if (packages[p.category]) packages[p.category].push(p); });
+  // Select 3 representative packages: one from each category
+  const packages = [
+    allPackages.find(p => p.category === 'ekonomik' && p.is_popular),
+    allPackages.find(p => p.category === 'premium' && p.is_popular),
+    allPackages.find(p => p.category === 'pro_ip' && p.is_popular),
+  ].filter(Boolean);
   const heroTitle = data.getSetting('paketler_hero_title', 'Kamera Sistemleri Paketleri');
   const heroDesc = data.getSetting('paketler_hero_desc', 'İhtiyacınıza ve bütçenize en uygun güvenlik kamerası paketini seçin, biz profesyonelce kuralım.');
   const faq = JSON.parse(data.getSetting('paketler_faq', '[]'));
@@ -178,7 +181,8 @@ app.post('/admin/login', (req, res) => {
 });
 
 app.get('/admin/logout', (req, res) => {
-  req.session.destroy(() => res.redirect('/admin/login'));
+  req.session = null;
+  res.redirect('/admin/login');
 });
 
 // ─── Admin Panel Routes ───
