@@ -56,13 +56,13 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   backdrop-filter: blur(16px);
 }
 .nav { min-height: 84px; display: flex; align-items: center; gap: 28px; }
-.brand { width: 270px; flex: 0 0 auto; }
+.brand { width: 245px; flex: 0 0 auto; }
 .brand img { width: 100%; height: 58px; object-fit: contain; }
-.nav-links { display: flex; align-items: center; justify-content: center; gap: 31px; margin-left: auto; }
+.nav-links { display: flex; align-items: center; justify-content: center; gap: 22px; margin-left: auto; }
 .nav-links a {
   position: relative;
   padding: 30px 0 26px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #29364a;
 }
@@ -198,14 +198,52 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 .about-service-icon span { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 10px; border: 1px solid rgba(255,255,255,.25); border-radius: 14px; color: #fff; font-size: 24px; }
 .about-service-image img { width: 100%; height: 100%; min-height: 170px; object-fit: cover; }
 .about-bottom-cta {
-  color: #fff;
-  background: linear-gradient(90deg, rgba(2,18,41,.35), rgba(2,18,41,.98) 42%), url("/assets/about-consultation.webp") left center/cover no-repeat;
+  background: #fff;
   padding: 58px 0;
 }
-.about-bottom-cta .container { display: grid; grid-template-columns: 1fr 1fr; }
-.about-bottom-cta h2 { color: #fff; }
-.about-mini { display: flex; flex-wrap: wrap; gap: 18px; color: #f0f5fb; font-size: 13px; font-weight: 800; margin-top: 18px; }
+.about-bottom-cta .container { max-width: 720px; margin: 0 auto; text-align: center; }
+.about-bottom-cta h2 { color: var(--navy); }
+.about-mini { display: flex; flex-wrap: wrap; gap: 18px; color: var(--muted); font-size: 13px; font-weight: 800; margin-top: 18px; }
 .about-mini span::before { content: "✓"; color: var(--orange); margin-right: 7px; }
+
+.services-hero {
+  position: relative; min-height: 275px; display: flex; align-items: center; overflow: hidden; color: #fff; background: #021b3b;
+}
+.services-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(2,18,41,.96) 0%, rgba(2,18,41,.8) 42%, rgba(2,18,41,.18) 100%), url("/assets/ev-kamera-sistemi.webp") center 42%/cover no-repeat;
+}
+.services-hero .container { position: relative; z-index: 2; }
+.services-hero h1 { color: #fff; font-size: clamp(42px, 5vw, 62px); margin-bottom: 12px; }
+.services-hero p { color: #e0e8f3; font-size: 20px; max-width: 560px; margin: 0; }
+.breadcrumb-strip { background: #f3f6fa; border-bottom: 1px solid var(--line); padding: 18px 0; color: var(--navy); font-size: 14px; font-weight: 700; }
+.service-list { display: grid; gap: 22px; }
+.service-row { display: grid; grid-template-columns: .58fr 1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 10px 34px rgba(10,36,76,.07); }
+.service-row-image { min-height: 285px; background: #dbe5ef; }
+.service-row-image img { width: 100%; height: 100%; object-fit: cover; }
+.service-row-content { padding: 34px 40px; }
+.service-titleline { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; }
+.service-number { color: var(--navy); font-size: 27px; font-weight: 900; letter-spacing: .03em; }
+.service-titleline h2 { margin: 0; font-size: clamp(26px, 3vw, 34px); text-transform: uppercase; }
+.service-round { width: 74px; height: 74px; flex: 0 0 auto; display: grid; place-items: center; color: #fff; background: var(--navy); border-radius: 50%; font-size: 34px; }
+.service-row.electric .service-round { background: var(--orange); }
+.service-features { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 30px 0 24px; }
+.service-feature { text-align: center; color: var(--navy); font-size: 13px; font-weight: 800; padding-inline: 6px; border-right: 1px solid var(--line); }
+.service-feature:last-child { border-right: 0; }
+.service-feature span { display: grid; place-items: center; width: 42px; height: 42px; margin: 0 auto 8px; color: var(--navy); border: 1px solid #dfe7f1; border-radius: 12px; font-size: 22px; }
+.service-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; margin: 24px 0; }
+.service-check { color: #24354d; font-weight: 700; font-size: 15px; }
+.service-check::before { content: "✓"; display: inline-grid; place-items: center; width: 19px; height: 19px; margin-right: 9px; border-radius: 50%; color: #fff; background: var(--orange); font-size: 11px; font-weight: 900; }
+.service-row.technical .service-check::before { background: var(--navy); }
+.external-band { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 24px; padding: 14px 18px; border-radius: 12px; background: #fff2eb; }
+.external-band strong { color: var(--orange); font-size: 28px; line-height: 1; }
+.services-cta { margin-top: 26px; display: grid; grid-template-columns: 1.25fr .75fr; gap: 34px; align-items: center; color: #fff; background: #021b3b; border-radius: 16px; padding: 38px 44px; }
+.services-cta h2 { color: #fff; text-transform: uppercase; font-size: clamp(28px, 3vw, 38px); }
+.services-cta p { color: #d7e2f0; }
+.service-mini { display: flex; flex-wrap: wrap; gap: 18px; color: #dce7f4; font-weight: 800; font-size: 13px; margin-top: 24px; }
+.service-mini span::before { content: "♢"; color: var(--orange); margin-right: 6px; }
+.services-cta-side { display: grid; gap: 16px; }
+.services-cta-side .btn { width: 100%; }
 
 .packages-top { text-align: center; max-width: 760px; margin: 0 auto 44px; }
 .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
@@ -287,7 +325,7 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .menu-toggle { display: none; }
   .nav-links {
     position: fixed; z-index: 100; left: 12px; right: 12px; bottom: 10px; top: auto;
-    display: grid; grid-template-columns: repeat(6, 1fr); align-items: center; gap: 4px;
+    display: grid; grid-template-columns: repeat(7, 1fr); align-items: center; gap: 4px;
     padding: 8px; background: rgba(2,27,59,.96); border: 1px solid rgba(255,255,255,.13);
     border-radius: 20px; box-shadow: 0 14px 42px rgba(2,27,59,.35); backdrop-filter: blur(16px);
   }
@@ -298,6 +336,7 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .nav-links a::before { display: block; margin-bottom: 5px; color: #fff; font-size: 19px; line-height: 1; }
   .nav-links a[href="/"]::before { content: "⌂"; }
   .nav-links a[href="/paketler"]::before { content: "▦"; }
+  .nav-links a[href="/hizmetlerimiz"]::before { content: "⚙"; }
   .nav-links a[href="/hakkimizda"]::before { content: "ℹ"; }
   .nav-links a[href="/referanslar"]::before { content: "♢"; }
   .nav-links a[href="/blog"]::before { content: "▤"; }
@@ -309,6 +348,8 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .hero { min-height: auto; }
   .hero-grid, .split, .contact-layout { grid-template-columns: 1fr; }
   .about-intro, .about-work, .about-service-grid, .about-bottom-cta .container { grid-template-columns: 1fr; }
+  .service-row, .services-cta { grid-template-columns: 1fr; }
+  .service-features { grid-template-columns: repeat(3, 1fr); }
   .about-value-grid { grid-template-columns: repeat(2, 1fr); }
   .about-service-icons { grid-template-columns: repeat(3, 1fr); }
   .hero { background-position: 62% top; background-size: auto 480px; background-repeat: no-repeat; padding-top: 430px; }
@@ -332,7 +373,14 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .about-hero { min-height: 620px; align-items: end; padding: 250px 0 52px; }
   .about-hero::before { background: linear-gradient(0deg, rgba(2,18,41,.96) 0%, rgba(2,18,41,.72) 48%, rgba(2,18,41,.12) 100%), url("/assets/about-hero.webp") 68% top/auto 360px no-repeat; }
   .about-value-grid, .about-service-icons { grid-template-columns: 1fr 1fr; }
-  .about-bottom-cta { background: linear-gradient(0deg, rgba(2,18,41,.98), rgba(2,18,41,.88)), url("/assets/about-consultation.webp") center/cover no-repeat; }
+  .about-bottom-cta { background: #fff; }
+  .services-hero { min-height: 330px; }
+  .service-row-content { padding: 28px 20px; }
+  .service-titleline { align-items: flex-start; }
+  .service-round { width: 58px; height: 58px; font-size: 27px; }
+  .service-features, .service-checks { grid-template-columns: 1fr 1fr; }
+  .external-band { display: block; }
+  .external-band .btn { margin-top: 14px; width: 100%; }
   .benefits { display: grid; grid-template-columns: 1fr; gap: 14px; }
   .trust-grid, .service-grid, .steps-grid, .package-grid, .blog-grid, .contact-cards, .footer-grid { grid-template-columns: 1fr; }
   .trust-item { border-right: 0; border-bottom: 1px solid var(--line); }
