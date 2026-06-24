@@ -509,8 +509,10 @@ h3 { font-size: 21px; margin-bottom: 10px; }
 
 @media (max-width: 1100px) {
   .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 90;
     background: rgba(255,255,255,.96);
     border-bottom: 1px solid rgba(230,235,242,.9);
@@ -552,20 +554,36 @@ h3 { font-size: 21px; margin-bottom: 10px; }
     display: grid;
     justify-items: center;
     align-content: center;
-    gap: 5px;
+    gap: 3px;
     min-height: 58px;
-    padding: 7px 1px 6px;
-    border-radius: 16px;
+    padding: 6px 0;
+    border-radius: 0;
     color: rgba(6,46,99,.66);
-    font-size: clamp(9px, 2.55vw, 10.5px);
+    font-size: 8px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.1;
     text-align: center;
     white-space: nowrap;
     border-left: 0 !important;
   }
-  .nav-text-full { display: none; }
-  .nav-text-short { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .nav-text-full { display: block; font-size: 8px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-text-short { display: none; }
+  .nav-icon {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: currentColor;
+  }
+  .nav-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .nav-icon {
     display: grid;
     place-items: center;
@@ -602,9 +620,8 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .nav-links a[href="../iletisim/"]::before { content: none; }
   .nav-links a.active {
     color: var(--orange);
-    background: #fff3ed;
-    box-shadow: none;
-    font-weight: 500;
+    background: rgba(255,90,22,.08);
+    font-weight: 600;
   }
   .nav-links a.active .nav-icon {
     color: var(--orange);
@@ -623,7 +640,14 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .hero { background-position: 62% top; background-size: auto 480px; background-repeat: no-repeat; padding-top: 430px; }
   .hero-grid { display: block; }
   .hero-visual { display: none; }
-  .hero-copy { padding: 44px 0 70px; }
+  .hero-copy { padding: 44px 0 54px; }
+  .hero-proof { margin-top: 24px; gap: 10px; }
+  .hero-proof .icon-box { width: 38px; height: 38px; font-size: 16px; }
+  .hero-proof span { font-size: 14px; }
+  .hero-proof small { font-size: 12px; }
+  .eyebrow { font-size: 11px; }
+  h1 { font-size: 32px; }
+  .hero-copy p { font-size: 15px; }
   .service-grid, .steps-grid, .package-grid { grid-template-columns: 1fr 1fr; }
   .package-card:last-child { grid-column: 1 / -1; }
   .blog-layout { grid-template-columns: 1fr; }
@@ -659,7 +683,12 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .external-band .btn { margin-top: 14px; width: 100%; }
   .benefits { display: grid; grid-template-columns: 1fr; gap: 14px; }
   .trust-grid, .service-grid, .steps-grid, .package-grid, .blog-grid, .contact-cards, .footer-grid { grid-template-columns: 1fr; }
-  .trust-item { border-right: 0; border-bottom: 1px solid var(--line); }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-item { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 12px; }
+  .trust-item:nth-child(2n) { border-right: 0; }
+  .trust-item:nth-last-child(-n+2) { border-bottom: 0; }
+  .trust-item b { font-size: 22px; }
+  .trust-item span { font-size: 12px; }
   .section-head { display: block; }
   .section-head .btn { margin-top: 15px; }
   .image-panel { min-height: 420px; }
