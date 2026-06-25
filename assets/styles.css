@@ -14,7 +14,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
 body {
   margin: 0;
   color: var(--ink);
@@ -634,6 +634,7 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .hero-grid, .split, .contact-layout { grid-template-columns: 1fr; }
   .about-intro, .about-work, .about-service-grid, .about-bottom-cta .container { grid-template-columns: 1fr; }
   .service-row, .services-cta { grid-template-columns: 1fr; }
+  .services-hero { min-height: 200px; padding: 100px 0 42px; }
   .service-features { grid-template-columns: repeat(3, 1fr); }
   .about-value-grid { grid-template-columns: repeat(2, 1fr); }
   .about-service-icons { grid-template-columns: repeat(3, 1fr); }
@@ -661,6 +662,11 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .refs-testimonials { grid-template-columns: 1fr; }
   .refs-why { grid-template-columns: 1fr 1fr; }
   .refs-cta .btn { min-width: 0; width: 100%; }
+  .refs-hero { min-height: 200px; padding: 110px 0 42px; }
+  .refs-hero::before { background: linear-gradient(90deg, rgba(2,18,41,.98) 0%, rgba(2,18,41,.88) 100%), url("/assets/ev-kamera-sistemi.webp") 40% center/cover no-repeat; }
+  .refs-hero p { font-size: 17px; }
+  .refs-cta-contact { font-size: 14px; }
+  .refs-cta span { float: none; display: inline-block; margin-right: 14px; font-size: 42px; }
 }
 
 @media (max-width: 680px) {
@@ -674,7 +680,7 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .about-hero::before { background: linear-gradient(0deg, rgba(2,18,41,.96) 0%, rgba(2,18,41,.72) 48%, rgba(2,18,41,.12) 100%), url("/assets/about-hero.webp") 68% top/auto 360px no-repeat; }
   .about-value-grid, .about-service-icons { grid-template-columns: 1fr 1fr; }
   .about-bottom-cta { background: #fff; }
-  .services-hero { min-height: 330px; }
+  .services-hero { min-height: 330px; padding: 100px 0 38px; }
   .service-row-content { padding: 28px 20px; }
   .service-titleline { align-items: flex-start; }
   .service-round { width: 58px; height: 58px; font-size: 27px; }
@@ -720,8 +726,33 @@ h3 { font-size: 21px; margin-bottom: 10px; }
   .refs-istanbul { padding: 26px 24px 76px; }
   .refs-istanbul h2 { font-size: 23px; }
   .refs-istanbul em { font-size: 42px; }
-  .refs-cta { padding: 28px 22px; }
-  .refs-cta span { font-size: 42px; margin-right: 14px; }
+  .refs-cta { padding: 28px 22px; display: flex; flex-direction: column; text-align: center; }
+  .refs-cta span { float: none; display: inline-block; margin-right: 0; font-size: 42px; }
+  .refs-cta .btn { min-width: 0; width: 100%; }
+  .refs-cta-contact { justify-items: center; }
+}
+
+@media (max-width: 480px) {
+  .refs-brands { grid-template-columns: 1fr; }
+  .brand-logo { min-height: 60px; font-size: 18px; border-right: 0; }
+  .brand-logo:nth-child(odd) { border-right: 0; }
+  .refs-testimonials article { padding: 20px 16px 18px; }
+  .refs-istanbul em { font-size: 32px; right: 16px; }
+  .refs-istanbul { padding: 22px 20px 60px; }
+  .refs-istanbul h2 { font-size: 20px; }
+  .refs-project-types img { height: 150px; }
+  .refs-project-types div { padding: 14px 12px 16px; }
+  .refs-project-types strong { font-size: 15px; }
+  .refs-cta { padding: 24px 18px; }
+  .refs-cta h2 { font-size: 22px; }
+  .services-hero { min-height: 280px; padding: 90px 0 30px; }
+  .services-hero h1 { font-size: 32px; }
+  .services-hero p { font-size: 16px; }
+  .service-row-content { padding: 22px 16px; }
+  .service-features { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .service-checks { grid-template-columns: 1fr; gap: 8px; }
+  .services-cta { padding: 26px 20px; }
+  .services-cta h2 { font-size: 24px; }
 }
 
 /* Mobil alt menü son katman: masaüstünü etkilemeden her mobil genişlikte menüyü alta kilitler. */

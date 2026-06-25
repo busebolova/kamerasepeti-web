@@ -17,6 +17,7 @@
     .admin-sidebar a:hover, .admin-sidebar a.active { color:#fff;background:rgba(255,255,255,.08) }
     .admin-sidebar .logo { padding:0 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:16px }
     .admin-sidebar .logo img { width:180px;height:40px;object-fit:contain;object-position:left }
+    .admin-sidebar-toggle { display:none }
     .admin-main { flex:1;padding:24px 32px;overflow-y:auto }
     .admin-topbar { display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line) }
     .admin-topbar h1 { font-size:24px;margin-bottom:0 }
@@ -49,13 +50,45 @@
     .sort-col { width:50px }
     .action-col { width:120px }
     .ck-content { min-height:400px }
-    @media(max-width:768px){ .admin-layout{flex-direction:column} .admin-sidebar{width:100%;padding:10px 0} .admin-sidebar a{padding:8px 16px} .admin-main{padding:16px} .admin-form .row{grid-template-columns:1fr} }
+    @media(max-width:768px){
+      .admin-layout{flex-direction:column}
+      .admin-sidebar{width:100%;padding:10px 0}
+      .admin-sidebar a{padding:8px 16px}
+      .admin-main{padding:16px}
+      .admin-form .row{grid-template-columns:1fr}
+      .admin-topbar{flex-direction:column;align-items:flex-start;gap:8px}
+      .admin-grid{grid-template-columns:repeat(2,1fr)}
+      .admin-table{display:block;overflow-x:auto;white-space:nowrap}
+      .admin-actions{flex-direction:column}
+      .admin-actions .btn{width:100%;text-align:center}
+      .media-grid{grid-template-columns:repeat(2,1fr)}
+      .action-col{width:auto}
+      .stat-card{padding:14px}
+      .stat-card b{font-size:26px}
+      .admin-card{padding:14px}
+      .admin-card .btn{width:100%;text-align:center}
+      /* form buttons */
+      .admin-form .btn{width:100%;text-align:center}
+      /* sidebar collapse toggle */
+      .admin-sidebar-wrap{position:relative}
+      .admin-sidebar-toggle{display:flex!important;align-items:center;justify-content:space-between;width:100%;padding:10px 20px;background:#021b3b;color:#fff;border:0;font-size:14px;font-weight:700;cursor:pointer}
+      .admin-sidebar-toggle svg{transition:transform .25s}
+      .admin-sidebar-toggle.open svg{transform:rotate(180deg)}
+      .admin-sidebar-nav{display:none}
+      .admin-sidebar-nav.open{display:block}
+      .admin-sidebar .logo{display:none}
+    }
   </style>
 </head>
 <body class="admin-body">
   <div class="admin-layout">
     <nav class="admin-sidebar">
       <div class="logo"><a href="/admin"><img src="<%= logoLight %>" alt="<%= siteName %>"></a></div>
+      <button class="admin-sidebar-toggle" onclick="this.classList.toggle('open');document.querySelector('.admin-sidebar-nav').classList.toggle('open')">
+        <span>Admin Menü</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="admin-sidebar-nav">
       <a href="/admin" class="<%= currentPath === '/admin' ? 'active' : '' %>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</a>
       <a href="/admin/blog" class="<%= currentPath.startsWith('/admin/blog') ? 'active' : '' %>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Blog</a>
       <a href="/admin/referanslar" class="<%= currentPath.startsWith('/admin/referanslar') ? 'active' : '' %>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Referanslar</a>
@@ -69,6 +102,7 @@
       <div style="border-top:1px solid rgba(255,255,255,.1);margin:16px 20px 0;padding-top:16px">
         <a href="/" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Siteyi Gör</a>
         <a href="/admin/logout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Çıkış</a>
+      </div>
       </div>
     </nav>
     <div class="admin-main">

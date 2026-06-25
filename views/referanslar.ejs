@@ -1,54 +1,146 @@
-    <section class="page-hero" style="background:linear-gradient(105deg, #031d40 0%, #06366f 70%, #0b4d94 100%);overflow:hidden;position:relative">
-      <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(3,29,64,.92) 0%,rgba(6,54,111,.82) 70%,rgba(11,77,148,.7) 100%),url(<%= refHeroBg || '/assets/blog-referans.png' %>) center/cover no-repeat"></div>
-      <div class="container" style="position:relative;z-index:2">
-        <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Referanslar</div>
-        <h1>Referanslarımız</h1>
-        <p>250'den fazla mutlu müşterimizle gurur duyuyoruz.</p>
+<section class="refs-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="/">Ana Sayfa</a> <span>›</span> Referanslar</div>
+    <h1>Referanslarımız</h1>
+    <p>Gerçekleştirdiğimiz projeler ve iş ortaklarımızla güvenliği en üst seviyeye taşıyoruz.</p>
+  </div>
+</section>
+
+<section class="section refs-page">
+  <div class="container">
+    <div class="refs-title">
+      <span class="refs-title-icon">▣</span>
+      <div>
+        <h2>Tamamlanan Projelerimiz</h2>
+        <p>Farklı sektörlerde birçok projeyi başarıyla tamamladık.</p>
+      </div>
+    </div>
+
+    <div class="refs-project-types">
+      <article>
+        <img src="/assets/about-banner.webp" alt="Apartman kamera sistemi kurulumu">
+        <div><span>▥</span><strong>Apartman</strong><small>Kamera Sistemleri</small></div>
+      </article>
+      <article>
+        <img src="/assets/ev-kamera-sistemi.webp" alt="Villa kamera sistemi projesi">
+        <div><span>⌂</span><strong>Villa</strong><small>Kamera Sistemleri</small></div>
+      </article>
+      <article>
+        <img src="/assets/is-yeri-kamera-sistemi.webp" alt="Mağaza güvenlik kamerası kurulumu">
+        <div><span>▤</span><strong>Mağaza</strong><small>Kamera Sistemleri</small></div>
+      </article>
+      <article>
+        <img src="/assets/about-consultation.webp" alt="Ofis kamera sistemi çözümü">
+        <div><span>▦</span><strong>Ofis</strong><small>Kamera Sistemleri</small></div>
+      </article>
+      <article>
+        <img src="/assets/service-technical.webp" alt="Depo ve fabrika kamera sistemi">
+        <div><span>▧</span><strong>Depo & Fabrika</strong><small>Kamera Sistemleri</small></div>
+      </article>
+    </div>
+
+    <div class="refs-title refs-title-space">
+      <span class="refs-title-icon">◇</span>
+      <div>
+        <h2>Çalıştığımız Markalar</h2>
+        <p>Projelerimizde güvenlik ve ağ altyapısında kabul görmüş markaları tercih ediyoruz.</p>
+      </div>
+    </div>
+
+    <div class="refs-brands" aria-label="Çalıştığımız güvenlik markaları">
+      <div class="brand-logo hikvision">HIKVISION</div>
+      <div class="brand-logo dahua">dahua <small>TECHNOLOGY</small></div>
+      <div class="brand-logo unv">UNV <small>Uniview</small></div>
+      <div class="brand-logo uniywell">UNIYWELL</div>
+      <div class="brand-logo tplink">tp-link</div>
+      <div class="brand-logo nexans">Nexans</div>
+    </div>
+
+    <div class="refs-before-after">
+      <div class="refs-title compact">
+        <span class="refs-title-icon">◉</span>
+        <div>
+          <h2>Öncesi / Sonrası</h2>
+          <p>Düzenli kurulum, güçlü altyapı. Güvenli yarınlar.</p>
+        </div>
+      </div>
+      <article class="before-card">
+        <span class="badge-red">Öncesi</span>
+        <div class="before-visual before-bad"></div>
+        <p><b>✕</b> Dağınık kablolama, güvensiz ve düzensiz sistem</p>
+      </article>
+      <article class="before-card">
+        <span class="badge-green">Sonrası</span>
+        <div class="before-visual before-good"></div>
+        <p><b>✓</b> Düzenli kablolama, güvenli ve profesyonel kurulum</p>
+      </article>
+    </div>
+
+    <div class="refs-title refs-title-space">
+      <span class="refs-title-icon">☆</span>
+      <div>
+        <h2>Müşteri Yorumları</h2>
+      </div>
+    </div>
+
+    <div class="refs-testimonials">
+      <% const shownTestimonials = testimonials && testimonials.length ? testimonials.slice(0, 3) : [
+        { name: 'Mehmet Y.', title: 'İstanbul', content: 'İşyerimiz için kurulan sistemden çok memnun kaldık.', rating: 5 },
+        { name: 'Selin A.', title: 'İstanbul', content: 'Kurulum temiz ve hızlı yapıldı. Ekibin ilgisi için teşekkür ederiz.', rating: 5 },
+        { name: 'Ahmet D.', title: 'İstanbul', content: 'Telefondan izleme kurulumu sorunsuz çalışıyor.', rating: 5 }
+      ]; %>
+      <% shownTestimonials.forEach(function(t) { %>
+        <article>
+          <div class="quote-mark">“</div>
+          <div class="stars"><% for (var s = 0; s < (t.rating || 5); s++) { %>★<% } %></div>
+          <p><%= t.content %></p>
+          <div class="person"><span><%= t.name.charAt(0) %></span><strong><%= t.name %></strong><small><%= t.title || t.company || 'İstanbul' %></small></div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="refs-trust-row">
+      <article class="refs-istanbul">
+        <span>⌖</span>
+        <h2>İstanbul Genelinde Keşif ve Kurulum Hizmeti</h2>
+        <p>Avrupa ve Anadolu Yakası'nda profesyonel kamera sistemleri kurulumu, teknik servis ve bakım hizmeti sunuyoruz.</p>
+        <em>İstanbul</em>
+      </article>
+      <article class="refs-why">
+        <h2>Güveninizi Hak Ediyoruz</h2>
+        <div>
+          <span>✓</span><strong>Profesyonel Kurulum</strong><small>Temiz ve güvenli montaj</small>
+        </div>
+        <div>
+          <span>▯</span><strong>Mobil İzleme Desteği</strong><small>Android ve iPhone uyumlu</small>
+        </div>
+        <div>
+          <span>⚙</span><strong>Teknik Servis</strong><small>7/24 destek ve hızlı çözüm</small>
+        </div>
+        <div>
+          <span>⚡</span><strong>Altyapı Desteği</strong><small>Network ve kablolama çözümü</small>
+        </div>
+        <div>
+          <span>☆</span><strong>Memnuniyet Garantisi</strong><small>Öncelikli çalışma anlayışı</small>
+        </div>
+        <div>
+          <span>⌖</span><strong>İstanbul Geneli Hizmet</strong><small>Keşif ve kurulum hizmeti</small>
+        </div>
+      </article>
+    </div>
+
+    <section class="refs-cta">
+      <div>
+        <span>◇</span>
+        <h2>Siz de Referanslarımız Arasına Katılın!</h2>
+        <p>Ücretsiz keşif ve ihtiyacınıza özel çözümler için hemen bizimle iletişime geçin.</p>
+      </div>
+      <a class="btn btn-green" href="<%= whatsappUrl %>" target="_blank">WhatsApp'tan Ücretsiz Keşif Talep Edin</a>
+      <div class="refs-cta-contact">
+        <strong><%= sitePhone %></strong>
+        <small>WhatsApp Teklif Hattı</small>
+        <strong>7/24 Teknik Destek</strong>
       </div>
     </section>
-    <section class="section section-soft">
-      <div class="container">
-        <div class="ref-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:56px;text-align:center">
-          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">250+</b><br><span style="color:var(--muted)">Kurulum</span></div>
-          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">4.9</b><br><span style="color:var(--muted)">Ortalama Puan</span></div>
-          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">50+</b><br><span style="color:var(--muted)">Proje</span></div>
-          <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 16px"><b style="font-size:36px;color:var(--orange)">2 Yıl</b><br><span style="color:var(--muted)">Garanti</span></div>
-        </div>
-        <div style="text-align:center;margin-bottom:44px">
-          <div class="eyebrow" style="justify-content:center">Müşteri Yorumları</div>
-          <h2>Müşterilerimiz Ne Diyor?</h2>
-        </div>
-        <div class="ref-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
-          <% testimonials.forEach(function(t) { %>
-            <div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(16,46,86,.055)">
-              <div style="color:#f5a623;font-size:18px;margin-bottom:12px"><% for (var s = 0; s < (t.rating || 5); s++) { %>★<% } %></div>
-              <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:18px">"<%= t.content %>"</p>
-              <div style="display:flex;align-items:center;gap:12px">
-                <div style="width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800"><%= t.name.charAt(0) %></div>
-                <div><b><%= t.name %></b><br><span style="color:var(--muted);font-size:13px"><%= t.title || t.company %></span></div>
-              </div>
-            </div>
-          <% }) %>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div style="text-align:center;margin-bottom:44px">
-          <div class="eyebrow" style="justify-content:center">Projelerimiz</div>
-          <h2>Tamamlanan Projeler</h2>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
-          <% projects.forEach(function(p) { %>
-            <div style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(16,46,86,.055)">
-              <div style="height:200px;overflow:hidden;background:#dce5ef"><img src="<%= p.image || '/assets/hero-kurulum-v2.webp' %>" alt="<%= p.title %>" style="width:100%;height:100%;object-fit:cover"></div>
-              <div style="padding:20px">
-                <div style="color:var(--orange);font-size:12px;font-weight:800;text-transform:uppercase;margin-bottom:6px"><%= p.category %></div>
-                <h3 style="font-size:18px"><%= p.title %></h3>
-                <p style="color:var(--muted);font-size:14px;margin-bottom:0"><%= p.description %></p>
-              </div>
-            </div>
-          <% }) %>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
